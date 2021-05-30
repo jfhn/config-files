@@ -1,0 +1,111 @@
+{
+    "editor.mouseWheelZoom": true,
+    "editor.semanticHighlighting.enabled": true,
+
+    "C_Cpp.default.cppStandard": "c++14",
+
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 20,
+    "editor.lineNumbers": "on",
+
+    "editor.fontFamily": "'Source Code Pro', 'Courier New', Consolas",
+
+    "editor.tabSize": 8,
+    "editor.useTabStops": true,
+    "editor.insertSpaces": false,
+
+    "editor.fontSize": 16,
+    "Lua.telemetry.enable": true,
+    "luacheck.useLuacheck": true,
+    "Lua.diagnostics.enable": true,
+
+    "autoSnippet.snippets": [
+        {
+            "pattern": "**/*.h",
+            "snippet": "header-template"
+        },
+        {
+            "pattern": "**/*.cpp",
+            "snippet": "body-template"
+        },
+        {
+            "pattern": "**/*.c",
+            "snippet": "cfile-template"
+        }
+    ],
+
+    "editor.minimap.enabled": false,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "highlight.regexes": {
+        // (\/\/|--|\/\*\n*\ *\**|\[\[\n*\ *) *(TODO[(:])
+        "(--[[[\t ]*\n*)[\t ]*(TODO)[(:]?": { // TODO: fix
+            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+            "decorations": [
+                {
+                },
+                {
+                    "color": "#FF0000",
+                    "fontWeight": "bold"
+                },
+            ]
+        },
+        "(//|--|\n *[*])[\t ]*(TODO[(:])": {
+            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+            "decorations": [
+                {
+                },
+                {
+                    "color": "#FF0000",
+                    "fontWeight": "bold"
+                },
+            ]
+        },
+        "(//|--|\n [*])[\t ]*(NOTE[(:])": {
+            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+            "decorations": [
+                {
+                },
+                {
+                    "color": "#00BB00",
+                    "fontWeight": "bold"
+                }
+            ]
+        },
+        "(//|--|\n [*])[\t ]*(REVIEW|OPTIMIZE)([(:])": {
+            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+            "decorations": [
+                {
+                },
+                {
+                    "color": "#FCA402",
+                    "fontWeight": "bold"
+                },
+                {
+                    "color": "#FCA402",
+                    "fontWeight": "bold"
+                }
+            ]
+        }
+    },
+
+    "tabnine.experimentalAutoImports": true,
+
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent",
+    "workbench.colorTheme": "nuotsu",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
+}

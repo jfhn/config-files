@@ -1,0 +1,49 @@
+// Place your key bindings in this file to override the defaults
+[
+        {
+                "key": "ctrl+w left",
+                "command": "workbench.action.navigateLeft"
+        },
+        {
+                "key": "ctrl+w right",
+                "command": "workbench.action.navigateRight"
+        },
+        {
+                "key": "ctrl+up",
+                "command": "cursorPageUp"
+                // ctrl+shift+up for half scroll up
+        },
+        {
+                "key": "ctrl+down",
+                "command": "cursorPageDown"
+                // ctrl+shift+down for half scroll down
+        },
+        {
+                "key": "alt+left",
+                "command": "cursorWordPartLeft"
+        },
+        {
+                "key": "alt+right",
+                "command": "cursorWordPartRight"
+        },
+        {
+                "key": "alt+shift+left",
+                "command": "cursorWordPartLeftSelect"
+        },
+        {
+                "key": "alt+shift+right",
+                "command": "cursorWordPartRightSelect"
+        },
+        {
+                "key": "alt+backspace",
+                "command": "deleteWordPartLeft"
+        },
+        {
+                "key": "alt+delete",
+                "command": "deleteWordPartRight"
+        },
+        {
+                "key": "home",
+                "command": "cursorLineStart"
+        }
+]
