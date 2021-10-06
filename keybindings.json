@@ -1,49 +1,110 @@
 // Place your key bindings in this file to override the defaults
 [
-        {
-                "key": "ctrl+w left",
-                "command": "workbench.action.navigateLeft"
-        },
-        {
-                "key": "ctrl+w right",
-                "command": "workbench.action.navigateRight"
-        },
-        {
-                "key": "ctrl+up",
-                "command": "cursorPageUp"
-                // ctrl+shift+up for half scroll up
-        },
-        {
-                "key": "ctrl+down",
-                "command": "cursorPageDown"
-                // ctrl+shift+down for half scroll down
-        },
-        {
-                "key": "alt+left",
-                "command": "cursorWordPartLeft"
-        },
-        {
-                "key": "alt+right",
-                "command": "cursorWordPartRight"
-        },
-        {
-                "key": "alt+shift+left",
-                "command": "cursorWordPartLeftSelect"
-        },
-        {
-                "key": "alt+shift+right",
-                "command": "cursorWordPartRightSelect"
-        },
-        {
-                "key": "alt+backspace",
-                "command": "deleteWordPartLeft"
-        },
-        {
-                "key": "alt+delete",
-                "command": "deleteWordPartRight"
-        },
-        {
-                "key": "home",
-                "command": "cursorLineStart"
+    {
+        "key": "ctrl+w left",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+w right",
+        "command": "workbench.action.navigateRight"
+    },
+    // {
+    //     "key": "ctrl+up",
+    //     // "command": "cursorPageUp"
+    //     "command": "cursorMove",
+    //     "args": {
+    //         "to": "prevBlankLine",
+    //         "select": false
+    //     }
+    //     // ctrl+shift+up for half scroll up
+    // },
+    // {
+    //     "key": "ctrl+down",
+    //     "command": "cursorPageDown"
+    //     // ctrl+shift+down for half scroll down
+    // },
+    {
+        "key": "ctrl+up",
+        "command": "block-travel.jumpUp"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "block-travel.jumpDown"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "block-travel.selectUp"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "block-travel.selectDown"
+    },
+    {
+        "key": "alt+up",
+        "command": "extension.halfUp"
+    },
+    {
+        "key": "alt+down",
+        "command": "extension.halfDown"
+    },
+    {
+        "key": "alt+left",
+        "command": "cursorWordPartLeft"
+    },
+    {
+        "key": "alt+right",
+        "command": "cursorWordPartRight"
+    },
+    {
+        "key": "alt+shift+left",
+        "command": "cursorWordPartLeftSelect"
+    },
+    {
+        "key": "alt+shift+right",
+        "command": "cursorWordPartRightSelect"
+    },
+    {
+        "key": "alt+backspace",
+        "command": "deleteWordPartLeft"
+    },
+    {
+        "key": "alt+delete",
+        "command": "deleteWordPartRight"
+    },
+    {
+        "key": "home",
+        "command": "cursorLineStart"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.terminalCapture.runCapture",
+    },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": { "text": ".\\build.bat\u000D" }
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": { "text": "cls \u000D" }
+                },
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": { "text": ".\\build.bat\u000D" }
+                },
+                // "workbench.action.navigateEditorGroups",
+                // "extension.terminalCapture.runCapture",
+            ]
         }
+    },
+    {
+        // "command": "workbench.action.closeEditorInAllGroups"
+        "key": "ctrl+w c",
+        "command": "workbench.action.closeEditorsInGroup"
+    }
 ]
