@@ -154,4 +154,5 @@
     ],
     "editor.lineHeight": 0,
     "editor.fontSize": 16,
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }
