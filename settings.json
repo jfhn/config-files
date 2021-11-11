@@ -3,18 +3,61 @@
     "editor.semanticHighlighting.enabled": true,
 
     "C_Cpp.default.cppStandard": "c++14",
+    "C_Cpp.errorSquiggles": "Enabled",
 
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 20,
     "editor.lineNumbers": "on",
 
-    "editor.fontFamily": "'Source Code Pro', 'Courier New', Consolas",
+    "editor.renderWhitespace": "all",
+
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#678cb146"
+    },
+
+    "window.restoreWindows": "none",
+    "files.hotExit": "off",
+
+    "editor.fontFamily": "'Consolas Ligaturized v2', 'Courier New', 'Source Code Pro', Hasklig, Unispace, Consolas, 'JetBrains Mono', 'Lucida Console'",
+
+    "editor.smoothScrolling": true,
+    "editor.scrollbar.verticalScrollbarSize": 4,
+    "editor.scrollbar.horizontal": "hidden",
+
+    "vscode_custom_css.imports": [
+        "file:///C:/Users/JanHi/darkknight.css"
+    ],
+
+    "editor.cursorSmoothCaretAnimation": true,
+
+    "workbench.editor.showTabs": false,
+    // "workbench.editor.enablePreview": false,
+
+    // "terminalCapture.useClipboard": true,
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            // "args": ["/k", "C:\\Users\\JanHi\\dev\\shell.bat"],
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            // "args": ["/k", "C:\\Users\\JanHi\\dev\\shell.bat"],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
 
     "editor.tabSize": 8,
     "editor.useTabStops": true,
     "editor.insertSpaces": false,
-
-    "editor.fontSize": 16,
+    // "editor.fontWeight": "600",
     "Lua.telemetry.enable": true,
     "luacheck.useLuacheck": true,
     "Lua.diagnostics.enable": true,
@@ -35,70 +78,58 @@
     ],
 
     "editor.minimap.enabled": false,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+
+    "todohighlight.isCaseSensitive": false,
+
+    // Display only in comments with regex
+    "todohighlight.keywords": [
+        { // TODO(name): @annotation
+            "text": "TODO",
+            "color": "red",
+            "border": "2px solid red",
+            "borderRadius": "5px",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "regex": {
+                "pattern": "(?<=(\/\/|--|\/[*])[\t ]*)TODO([(][a-zA-Z0-9]+[)])?"
+            }
+        },
+        { // NOTE(name): @annotation
+            "text": "NOTE",
+            "color": "#00FF00",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "regex": {
+                "pattern": "(?<=(\/\/|--|\/[*])[\t ]*)NOTE([(][a-zA-Z0-9]+[)])?"
+            }
+        },
+        { // REVIEW(name): @annotation
+            "text": "REVIEW",
+            "color": "#FFAF19",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "regex": {
+                "pattern": "(?<=(\/\/|--|\/[*])[\t ]*)REVIEW([(][a-zA-Z0-9]+[)])?"
+            }
+        },
+        { // @annotation
+            "text": "@",
+            "color": "#4EC9B0",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "regex": {
+                "pattern": "(?<=(\/\/|--|\/[*]).*)@[a-zA-Z0-9]+"
+            },
+            "isWholeLine": false
         }
     ],
-    "highlight.regexes": {
-        // (\/\/|--|\/\*\n*\ *\**|\[\[\n*\ *) *(TODO[(:])
-        "(--[[[\t ]*\n*)[\t ]*(TODO)[(:]?": { // TODO: fix
-            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
-            "decorations": [
-                {
-                },
-                {
-                    "color": "#FF0000",
-                    "fontWeight": "bold"
-                },
-            ]
-        },
-        "(//|--|\n *[*])[\t ]*(TODO[(:])": {
-            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
-            "decorations": [
-                {
-                },
-                {
-                    "color": "#FF0000",
-                    "fontWeight": "bold"
-                },
-            ]
-        },
-        "(//|--|\n [*])[\t ]*(NOTE[(:])": {
-            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
-            "decorations": [
-                {
-                },
-                {
-                    "color": "#00BB00",
-                    "fontWeight": "bold"
-                }
-            ]
-        },
-        "(//|--|\n [*])[\t ]*(REVIEW|OPTIMIZE)([(:])": {
-            "filterFileRegex": ".*(?<!CHANGELOG.md)$",
-            "decorations": [
-                {
-                },
-                {
-                    "color": "#FCA402",
-                    "fontWeight": "bold"
-                },
-                {
-                    "color": "#FCA402",
-                    "fontWeight": "bold"
-                }
-            ]
-        }
-    },
+
+    "todohighlight.defaultStyle": {},
 
     "tabnine.experimentalAutoImports": true,
 
     "workbench.iconTheme": "gruvbox-material-icon-theme",
     "editor.wordWrap": "on",
-    "editor.wrappingIndent": "indent",
-    "workbench.colorTheme": "nuotsu",
+    "editor.wrappingIndent": "same",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 
@@ -107,5 +138,21 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "editor.fontLigatures": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "workbench.editor.untitled.hint": "hidden",
+    "errorLens.fontStyleItalic": true,
+    "todohighlight.isEnable": true,
+    "workbench.colorTheme": "Minimal Fedu Ext",
+
+    "cSpell.language": "en,de-de",
+    "cSpell.userWords": [
+        "ABSYN",
+        "Neighbour",
+        "Wingler"
+    ],
+    "editor.lineHeight": 0,
+    "editor.fontSize": 16,
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }
