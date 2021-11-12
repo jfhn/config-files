@@ -121,6 +121,9 @@
 (setq-default lua-indent-level 8)
 (setq-default lua-indent-nested-block-content-align nil)
 
+;; Haskell
+(use-package haskell-mode)
+
 
 ;;
 ;; UI Configuration
