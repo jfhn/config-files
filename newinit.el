@@ -130,6 +130,10 @@
 (use-package pdf-tools)
 (pdf-tools-install)
 
+;; Haskell
+(use-package haskell-mode)
+
+
 ;;
 ;; UI Configuration
 ;;
