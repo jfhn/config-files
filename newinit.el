@@ -71,10 +71,10 @@
 (use-package command-log-mode)
 (use-package counsel
   :bind (("M-x"     . counsel-M-x)
-	 ("C-x b"   . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r"     . counsel-minibuffer-history)))
+         ("C-x b"   . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         :map minibuffer-local-map
+         ("C-r"     . counsel-minibuffer-history)))
 
 (use-package rainbow-delimiters
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
@@ -97,6 +97,11 @@
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
+
+(use-package latex-preview-pane)
+
+(use-package fixmee)
+;(setq-default fixmee-mode 1)
 
 ;; Modeline configurations
 (setq-default doom-modeline-height 10)
@@ -121,6 +126,9 @@
 (setq-default lua-indent-level 8)
 (setq-default lua-indent-nested-block-content-align nil)
 
+;; LaTeX
+(use-package pdf-tools)
+(pdf-tools-install)
 
 ;;
 ;; UI Configuration
@@ -159,10 +167,23 @@
 ;; Disable ring bell
 (setq-default ring-bell-function 'ignore)
 
-;; Misc
-(setq-default default-tab-width 8)
+(global-whitespace-mode)
+(setq-default whitespace-style '(face tabs tab-mark trailing))
+(custom-set-faces
+ '(whitespace-tab ((t (:foreground "#737373")))))
 
-(setq-default whitespace-style (quote (face space-mark tab-mark)))
+(setq whitespace-display-mappings
+      '((tab-mark 9 [124 9] [92 9])))
+
+;;
+;; Variables
+;;
+
+(setq-default text-scale-mode-amount 0)
+(setq custom-tab-width 4)
+
+;(setq-default c-basic-offset custom-tab-width)
+
 
 ;;
 ;; Custom functions
@@ -196,36 +217,52 @@
   (interactive)
   (clm/open-command-log-buffer))
 
+(defun disable-tabs ()
+  (setq indent-tabs-mode nil))
+
+(defun enable-tabs ()
+  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
+  (setq indent-tabs-mode t)
+  (setq tab-width custom-tab-width))
+
+
+
 ;;
 ;; Keybindings
 ;;
 
 (global-unset-key (kbd "C-x C-s"))
 (global-unset-key (kbd "C-x b"))
-(global-unset-key (kbd "C-w"))
-(global-unset-key (kbd "C-y"))
 (global-unset-key (kbd "C-x C-c"))
-(global-unset-key (kbd "C-x o"))
 
 ;; Editing
-(global-set-key (kbd "C-z")      'undo)
-(global-set-key (kbd "C-x C-c")  'kill-region)
-(global-set-key (kbd "C-v")      'yank)
-(global-set-key (kbd "C-c C-c")  'kill-ring-save)
+(global-set-key (kbd "C-z")       'undo)
+(global-set-key (kbd "C-v")       'yank)
+(global-set-key (kbd "C-y")       'kill-ring-save)
+(global-set-key (kbd "<backtab>") 'indent-according-to-mode)
 
 ;; Scrolling
 (global-set-key (kbd "M-<up>")   'scroll-fast-up)
 (global-set-key (kbd "M-<down>") 'scroll-fast-down)
 
 ;; Windows (not the OS)
-(global-set-key (kbd "C-w v")    'split-window-right)
-(global-set-key (kbd "C-w c")    'delete-window)
-(global-set-key (kbd "C-w o")    'other-window)
+(global-set-key (kbd "C-c C-v")    'split-window-right)
 
 ;; Misc
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-s")      'save-and-trim)
 (global-set-key (kbd "C-f")      'swiper)
 (global-set-key (kbd "C-b")      'counsel-switch-buffer)
+(global-set-key (kbd "C-c C-c")  'compile)
+
+
+;;
+;; Hooks
+;;
+
+(add-hook 'prog-mode-hook       'enable-tabs)
+
+(add-hook 'lisp-mode-hook       'disable-tabs)
+(add-hook 'emacs-lisp-mode-hook 'disable-tabs)
 
 ;;; newinit.el ends here
