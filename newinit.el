@@ -117,18 +117,10 @@
 ;; Languages
 ;;
 
-;; C
-;(setq c-tab-always-indent nil)
-(setq-default c-basic-offset 8)
-
 ;; Lua
 (use-package lua-mode)
 (setq-default lua-indent-level 8)
 (setq-default lua-indent-nested-block-content-align nil)
-
-;; LaTeX
-(use-package pdf-tools)
-(pdf-tools-install)
 
 ;; Haskell
 (use-package haskell-mode)
@@ -184,15 +176,16 @@
 ;;
 
 (setq-default text-scale-mode-amount 0)
-(setq custom-tab-width 4)
+(setq-default custom-tab-width 4)
 
-;(setq-default c-basic-offset custom-tab-width)
+(setq-default c-basic-offset custom-tab-width)
 
 
 ;;
 ;; Custom functions
 ;;
 
+;; Scroll
 ;; TODO: Tweak values
 (defun get-scroll-height ()
   (if (= 0 text-scale-mode-amount)
@@ -212,6 +205,27 @@
   (scroll-up (calc-scroll-height))
   (move-to-window-line nil))
 
+;; Indentation
+(defun disable-tabs ()
+  (setq indent-tabs-mode nil))
+
+(defun enable-tabs ()
+  (setq indent-tabs-mode t)
+  (setq tab-width custom-tab-width))
+
+(defun ctab-4 ()
+  (interactive)
+  (setq-default custom-tab-width 4)
+  (setq-default c-basic-offset 4)
+  (reload-buffer))
+
+(defun ctab-8 ()
+  (interactive)
+  (setq-default custom-tab-width 8)
+  (setq-default c-basic-offset 8)
+  (reload-buffer))
+
+;; Misc
 (defun save-and-trim ()
   (interactive)
   (delete-trailing-whitespace)
@@ -221,14 +235,10 @@
   (interactive)
   (clm/open-command-log-buffer))
 
-(defun disable-tabs ()
-  (setq indent-tabs-mode nil))
-
-(defun enable-tabs ()
-  (local-set-key (kbd "TAB") 'tab-to-tab-stop)
-  (setq indent-tabs-mode t)
-  (setq tab-width custom-tab-width))
-
+(defun reload-buffer ()
+  (interactive)
+  (save-and-trim)
+  (revert-buffer :ignore-auto :noconfirm))
 
 
 ;;
@@ -243,7 +253,6 @@
 (global-set-key (kbd "C-z")       'undo)
 (global-set-key (kbd "C-v")       'yank)
 (global-set-key (kbd "C-y")       'kill-ring-save)
-(global-set-key (kbd "<backtab>") 'indent-according-to-mode)
 
 ;; Scrolling
 (global-set-key (kbd "M-<up>")   'scroll-fast-up)
@@ -253,11 +262,13 @@
 (global-set-key (kbd "C-c C-v")    'split-window-right)
 
 ;; Misc
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "C-s")      'save-and-trim)
-(global-set-key (kbd "C-f")      'swiper)
-(global-set-key (kbd "C-b")      'counsel-switch-buffer)
-(global-set-key (kbd "C-c C-c")  'compile)
+(global-set-key (kbd "<escape>")  'keyboard-escape-quit)
+(global-set-key (kbd "C-s")       'save-and-trim)
+(global-set-key (kbd "C-f")       'swiper)
+(global-set-key (kbd "C-b")       'counsel-switch-buffer)
+(global-set-key (kbd "C-c C-c")   'compile)
+(global-set-key (kbd "M-m")       'compile)
+(global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
 
 
 ;;
