@@ -178,7 +178,8 @@
 (setq-default text-scale-mode-amount 0)
 (setq-default custom-tab-width 4)
 
-(setq-default c-basic-offset custom-tab-width)
+(setq-default c-default-style "linux"
+              c-basic-offset custom-tab-width)
 
 
 ;;
@@ -216,13 +217,13 @@
 (defun ctab-4 ()
   (interactive)
   (setq-default custom-tab-width 4)
-  (setq-default c-basic-offset 4)
+  (setq-default c-basic-offset custom-tab-width)
   (reload-buffer))
 
 (defun ctab-8 ()
   (interactive)
   (setq-default custom-tab-width 8)
-  (setq-default c-basic-offset 8)
+  (setq-default c-basic-offset custom-tab-width)
   (reload-buffer))
 
 ;; Misc
