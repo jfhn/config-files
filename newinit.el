@@ -98,10 +98,16 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 
-(use-package latex-preview-pane)
-
-(use-package fixmee)
-;(setq-default fixmee-mode 1)
+(use-package multiple-cursors
+  ;; :straight t
+  :ensure   t
+  :bind (("H-SPC" . set-rectangular-region-anchor)
+         ("C-M-SPC" . set-rectangular-region-anchor)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C->" . mc/mark-all-like-this)
+         ("C-c C-SPC" . mc/edit-lines)
+         ))
 
 ;; Modeline configurations
 (setq-default doom-modeline-height 10)
@@ -109,8 +115,10 @@
 (setq-default doom-modeline-indent-info t)
 
 (setq-default doom-modeline-height 1)
-(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
-(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
+;(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
+;(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
+(set-face-attribute 'mode-line nil :family "Source Code Pro" :height 1)
+(set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 1)
 
 
 ;;
@@ -141,7 +149,8 @@
 (set-fringe-mode 10)
 
 ;; Set font
-(set-face-attribute 'default nil :font "Consolas" :height 140)
+(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
+;(set-face-attribute 'default nil :font "Consolas" :height 140)
 ;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
 
 ;; Set theme
@@ -176,7 +185,7 @@
 ;;
 
 (setq-default text-scale-mode-amount 0)
-(setq-default custom-tab-width 4)
+(setq-default custom-tab-width 8)
 
 (setq-default c-default-style "linux"
               c-basic-offset custom-tab-width)
@@ -218,12 +227,14 @@
   (interactive)
   (setq-default custom-tab-width 4)
   (setq-default c-basic-offset custom-tab-width)
+  (setq-default lua-indent-level 4)
   (reload-buffer))
 
 (defun ctab-8 ()
   (interactive)
   (setq-default custom-tab-width 8)
   (setq-default c-basic-offset custom-tab-width)
+  (setq-default lua-indent-level 8)
   (reload-buffer))
 
 ;; Misc
@@ -266,7 +277,7 @@
 (global-set-key (kbd "<escape>")  'keyboard-escape-quit)
 (global-set-key (kbd "C-s")       'save-and-trim)
 (global-set-key (kbd "C-f")       'swiper)
-(global-set-key (kbd "C-b")       'counsel-switch-buffer)
+(global-set-key (kbd "C-b")       'switch-to-buffer)
 (global-set-key (kbd "C-c C-c")   'compile)
 (global-set-key (kbd "M-m")       'compile)
 (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
