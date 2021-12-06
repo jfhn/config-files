@@ -46,7 +46,7 @@
 
 (use-package ivy
   :diminish
-  :bind (("C-s" . swiper)
+  :bind (("C-f" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done))
   :config
@@ -71,7 +71,7 @@
 (use-package command-log-mode)
 (use-package counsel
   :bind (("M-x"     . counsel-M-x)
-         ("C-x b"   . counsel-ibuffer)
+         ;("C-x b"   . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r"     . counsel-minibuffer-history)))
@@ -132,6 +132,17 @@
 
 ;; Haskell
 (use-package haskell-mode)
+(setq-default haskell-indentation-left-offset 4)
+
+;; Go
+(use-package go-mode)
+
+;; Kotlin
+(use-package kotlin-mode)
+(setq-default kotlin-tab-width 8)
+
+;; F#
+(use-package fsharp-mode)
 
 
 ;;
@@ -260,6 +271,7 @@
 (global-unset-key (kbd "C-x C-s"))
 (global-unset-key (kbd "C-x b"))
 (global-unset-key (kbd "C-x C-c"))
+(global-unset-key (kbd "C-b"))
 
 ;; Editing
 (global-set-key (kbd "C-z")       'undo)
@@ -278,7 +290,6 @@
 (global-set-key (kbd "C-s")       'save-and-trim)
 (global-set-key (kbd "C-f")       'swiper)
 (global-set-key (kbd "C-b")       'switch-to-buffer)
-(global-set-key (kbd "C-c C-c")   'compile)
 (global-set-key (kbd "M-m")       'compile)
 (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
 
@@ -291,5 +302,7 @@
 
 (add-hook 'lisp-mode-hook       'disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
+(add-hook 'haskell-mode         'disable-tabs)
+(add-hook 'fsharp-mode          'disable-tabs)
 
 ;;; newinit.el ends here
