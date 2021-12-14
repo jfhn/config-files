@@ -37,6 +37,7 @@
 (use-package jetbrains-darcula-theme)
 (use-package subatomic-theme)
 (use-package gruber-darker-theme)
+(use-package sublime-themes)
 
 ;; Better UX
 (use-package which-key
@@ -101,8 +102,7 @@
 (use-package multiple-cursors
   ;; :straight t
   :ensure   t
-  :bind (("H-SPC" . set-rectangular-region-anchor)
-         ("C-M-SPC" . set-rectangular-region-anchor)
+  :bind (("C-M-s" . set-rectangular-region-anchor)
          ("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C->" . mc/mark-all-like-this)
@@ -289,6 +289,7 @@
 (global-set-key (kbd "<escape>")  'keyboard-escape-quit)
 (global-set-key (kbd "C-s")       'save-and-trim)
 (global-set-key (kbd "C-f")       'swiper)
+(global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
 (global-set-key (kbd "C-b")       'switch-to-buffer)
 (global-set-key (kbd "M-m")       'compile)
 (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
