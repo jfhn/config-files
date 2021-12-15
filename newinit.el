@@ -38,6 +38,7 @@
 (use-package subatomic-theme)
 (use-package gruber-darker-theme)
 (use-package sublime-themes)
+(use-package obsidian-theme)
 
 ;; Better UX
 (use-package which-key
@@ -158,11 +159,6 @@
 (tooltip-mode    -1) ; Disable tooltips
 (menu-bar-mode   -1) ; Disable menubar
 (set-fringe-mode 10)
-
-;; Set font
-(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
-;(set-face-attribute 'default nil :font "Consolas" :height 140)
-;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
 
 ;; Set theme
 ;(load-theme 'misterioso)
@@ -306,5 +302,11 @@
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
 (add-hook 'haskell-mode         'disable-tabs)
 (add-hook 'fsharp-mode          'disable-tabs)
+
+;; Set font
+;(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
+;(set-face-attribute 'default nil :font "Consolas" :height 140)
+;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
+(set-face-attribute 'default nil :font "Iosevka Etoile" :height 130)
 
 ;;; newinit.el ends here
