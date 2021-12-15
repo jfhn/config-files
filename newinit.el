@@ -169,7 +169,8 @@
 ;(load-theme 'tango-dark)
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
-(load-theme 'gruber-darker t)
+;(load-theme 'gruber-darker t)
+(load-theme 'obsidian t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
