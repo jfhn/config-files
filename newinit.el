@@ -37,7 +37,6 @@
 (use-package jetbrains-darcula-theme)
 (use-package subatomic-theme)
 (use-package gruber-darker-theme)
-(use-package sublime-themes)
 (use-package obsidian-theme)
 
 ;; Better UX
@@ -53,9 +52,6 @@
          ("TAB" . ivy-alt-done))
   :config
   (ivy-mode 1))
-
-(use-package ivy-rich
-  :init (ivy-rich-mode 1))
 
 (use-package all-the-icons)
 
@@ -77,6 +73,9 @@
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r"     . counsel-minibuffer-history)))
+
+(use-package ivy-rich
+  :init (ivy-rich-mode 1))
 
 (use-package rainbow-delimiters
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
@@ -116,11 +115,6 @@
 (setq-default doom-modeline-indent-info t)
 
 (setq-default doom-modeline-height 1)
-;(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
-;(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
-(set-face-attribute 'mode-line nil :family "Source Code Pro" :height 1)
-(set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 1)
-
 
 ;;
 ;; Languages
@@ -307,6 +301,11 @@
 ;(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
 ;(set-face-attribute 'default nil :font "Consolas" :height 140)
 ;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
-(set-face-attribute 'default nil :font "Iosevka Etoile" :height 130)
+(set-face-attribute 'default nil :font "Iosevka SS06" :height 130)
+
+;(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
+;(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
+(set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 1)
+(set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 1)
 
 ;;; newinit.el ends here
