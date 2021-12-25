@@ -109,12 +109,14 @@
          ("C-c C-SPC" . mc/edit-lines)
          ))
 
+(use-package autothemer)
+
 ;; Modeline configurations
 (setq-default doom-modeline-height 10)
 ;(setq doom-modeline-icon nil)
 (setq-default doom-modeline-indent-info t)
 
-(setq-default doom-modeline-height 1)
+(setq-default doom-modeline-height 20)
 
 ;;
 ;; Languages
@@ -139,6 +141,9 @@
 ;; F#
 (use-package fsharp-mode)
 
+;; Markdown
+(use-package markdown-mode)
+
 
 ;;
 ;; UI Configuration
@@ -159,12 +164,15 @@
 ;(load-theme 'tango-dark)
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
-;(load-theme 'gruber-darker t)
-(load-theme 'obsidian t)
+(load-theme 'gruber-darker t)
+;(load-theme 'obsidian t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
 ;(set-face-background 'mode-line "black")
+
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; Set line wrap
 (global-visual-line-mode t)
@@ -301,11 +309,11 @@
 ;(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
 ;(set-face-attribute 'default nil :font "Consolas" :height 140)
 ;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
-(set-face-attribute 'default nil :font "Iosevka SS06" :height 130)
+(set-face-attribute 'default nil :font "Iosevka SS06" :height 150)
 
 ;(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
 ;(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
-(set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 1)
-(set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 1)
+(set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 3)
+(set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 10)
 
 ;;; newinit.el ends here
