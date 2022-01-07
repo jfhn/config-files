@@ -185,7 +185,12 @@
 (global-whitespace-mode)
 (setq-default whitespace-style '(face tabs tab-mark trailing))
 (custom-set-faces
- '(whitespace-tab ((t (:foreground "#737373")))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-tab ((t (:foreground "#737373"))))
+ '(whitespace ((t (:foreground "#737373")))))
 
 (setq whitespace-display-mappings
       '((tab-mark 9 [124 9] [92 9])))
@@ -199,6 +204,10 @@
 
 (setq-default c-default-style "linux"
               c-basic-offset custom-tab-width)
+
+(if (eq system-type 'windows-nt)
+    (setq-default build-script-name "build.bat")
+  (setq-default build-script-name "build.sh"))
 
 
 ;;
@@ -227,9 +236,11 @@
 
 ;; Indentation
 (defun disable-tabs ()
+  (interactive)
   (setq indent-tabs-mode nil))
 
 (defun enable-tabs ()
+  (interactive)
   (setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
@@ -247,6 +258,13 @@
   (setq-default lua-indent-level 8)
   (reload-buffer))
 
+;; Compilation
+(defun compile-with-build-script ()
+  (interactive)
+  (if (file-exists-p build-script-name)
+      (compile build-script-name)
+    (cd "..")))
+
 ;; Misc
 (defun save-and-trim ()
   (interactive)
@@ -262,37 +280,61 @@
   (save-and-trim)
   (revert-buffer :ignore-auto :noconfirm))
 
+(defun load-font-consolas ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium :slant 'italic)
+  (set-face-attribute 'mode-line nil :family "Consolas" :height 3)
+  (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 10))
 
-;;
-;; Keybindings
-;;
+(defun load-font-source-code-pro ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Source Code Pro" :height 140 :weight 'bold :slant 'italic)
+  (set-face-attribute 'mode-line nil :family "Source Code Pro" :height 3)
+  (set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 10))
 
-(global-unset-key (kbd "C-x C-s"))
-(global-unset-key (kbd "C-x b"))
-(global-unset-key (kbd "C-x C-c"))
-(global-unset-key (kbd "C-b"))
+(defun load-font-iosevka ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Iosevka SS06" :height 150 :weight 'medium :slant 'roman :width 'expanded)
+  (set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 3)
+  (set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 10))
 
-;; Editing
-(global-set-key (kbd "C-z")       'undo)
-(global-set-key (kbd "C-v")       'yank)
-(global-set-key (kbd "C-y")       'kill-ring-save)
+(defun load-font-courier-new ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Courier New Bold" :height 150 :weight 'bold :slant 'italic)
+  (set-face-attribute 'mode-line nil :family "Courier New" :height 3 :weight 'bold)
+  (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 10 :weight 'bold))
 
-;; Scrolling
-(global-set-key (kbd "M-<up>")   'scroll-fast-up)
-(global-set-key (kbd "M-<down>") 'scroll-fast-down)
+;; This is a preparation for evil integration
+(defun set-emacs-keybindings ()
+  (interactive)
+  (global-unset-key (kbd "C-x C-s"))
+  (global-unset-key (kbd "C-x b"))
+  (global-unset-key (kbd "C-x C-c"))
+  (global-unset-key (kbd "C-b"))
 
-;; Windows (not the OS)
-(global-set-key (kbd "C-c C-v")    'split-window-right)
+  ;; Editing
+  (global-set-key (kbd "C-z")       'undo)
+  (global-set-key (kbd "C-v")       'yank)
+  (global-set-key (kbd "C-y")       'kill-ring-save)
 
-;; Misc
-(global-set-key (kbd "<escape>")  'keyboard-escape-quit)
-(global-set-key (kbd "C-s")       'save-and-trim)
-(global-set-key (kbd "C-f")       'swiper)
-(global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
-(global-set-key (kbd "C-b")       'switch-to-buffer)
-(global-set-key (kbd "M-m")       'compile)
-(global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
+  ;; Scrolling
+  (global-set-key (kbd "M-<up>")   'scroll-fast-up)
+  (global-set-key (kbd "M-<down>") 'scroll-fast-down)
 
+  ;; Windows (not the OS)
+  (global-set-key (kbd "C-c C-v")    'split-window-right)
+
+  ;; Misc
+  (global-set-key (kbd "<escape>")  'keyboard-escape-quit)
+  (global-set-key (kbd "C-s")       'save-and-trim)
+  (global-set-key (kbd "C-f")       'swiper)
+  (global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
+  (global-set-key (kbd "C-b")       'switch-to-buffer)
+  (global-set-key (kbd "M-m")       'compile-with-build-script)
+  (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
+
+(load-font-courier-new)
+(set-emacs-keybindings)
 
 ;;
 ;; Hooks
@@ -305,15 +347,11 @@
 (add-hook 'haskell-mode         'disable-tabs)
 (add-hook 'fsharp-mode          'disable-tabs)
 
-;; Set font
-;(set-face-attribute 'default nil :font "Source Code Pro" :height 130)
-;(set-face-attribute 'default nil :font "Consolas" :height 140)
-;(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
-(set-face-attribute 'default nil :font "Iosevka SS06" :height 150)
-
-;(set-face-attribute 'mode-line nil :family "Consolas" :height 1)
-;(set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 1)
-(set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 3)
-(set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 10)
-
 ;;; newinit.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
