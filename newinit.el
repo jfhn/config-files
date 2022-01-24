@@ -38,6 +38,7 @@
 (use-package subatomic-theme)
 (use-package gruber-darker-theme)
 (use-package obsidian-theme)
+(use-package monokai-theme)
 
 ;; Better UX
 (use-package which-key
@@ -111,6 +112,11 @@
 
 (use-package autothemer)
 
+;; Auto Completion
+(use-package company)
+(use-package flycheck)
+
+
 ;; Modeline configurations
 (setq-default doom-modeline-height 10)
 ;(setq doom-modeline-icon nil)
@@ -144,6 +150,9 @@
 ;; Markdown
 (use-package markdown-mode)
 
+;; TypeScript
+(use-package tide)
+
 
 ;;
 ;; UI Configuration
@@ -164,8 +173,9 @@
 ;(load-theme 'tango-dark)
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
-(load-theme 'gruber-darker t)
 ;(load-theme 'obsidian t)
+;(load-theme 'gruber-darker t)
+(load-theme 'monokai t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
@@ -189,11 +199,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(whitespace ((t (:foreground "#737373"))))
  '(whitespace-tab ((t (:foreground "#737373"))))
- '(whitespace ((t (:foreground "#737373")))))
+ '(font-lock-type-face ((t (:italic t))))
+ '(font-lock-comment-face ((t (:italic t)))))
 
 (setq whitespace-display-mappings
       '((tab-mark 9 [124 9] [92 9])))
+
+
+
 
 ;;
 ;; Variables
@@ -282,27 +297,42 @@
 
 (defun load-font-consolas ()
   (interactive)
-  (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium :slant 'italic)
+  (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium) ; :slant 'italic
   (set-face-attribute 'mode-line nil :family "Consolas" :height 3)
   (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 10))
 
 (defun load-font-source-code-pro ()
   (interactive)
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 140 :weight 'bold :slant 'italic)
+  (set-face-attribute 'default nil :font "Source Code Pro" :height 140 :weight 'bold)
   (set-face-attribute 'mode-line nil :family "Source Code Pro" :height 3)
   (set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 10))
 
 (defun load-font-iosevka ()
   (interactive)
-  (set-face-attribute 'default nil :font "Iosevka SS06" :height 150 :weight 'medium :slant 'roman :width 'expanded)
+  (set-face-attribute 'default nil :font "Iosevka SS06" :height 150 :weight 'medium :width 'expanded)
   (set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 3)
   (set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 10))
 
 (defun load-font-courier-new ()
   (interactive)
-  (set-face-attribute 'default nil :font "Courier New Bold" :height 150 :weight 'bold :slant 'italic)
+  (set-face-attribute 'default nil :font "Courier New Bold" :height 150 :weight 'bold)
   (set-face-attribute 'mode-line nil :family "Courier New" :height 3 :weight 'bold)
   (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 10 :weight 'bold))
+
+;; TODO
+(defun switch-theme ()
+  (interactive)
+  ;; Disable old theme
+  (load-theme)
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(whitespace ((t (:foreground "#737373"))))
+   '(whitespace-tab ((t (:foreground "#737373"))))
+   '(font-lock-type-face ((t (:italic t))))
+   '(font-lock-comment-face ((t (:italic t))))))
 
 ;; This is a preparation for evil integration
 (defun set-emacs-keybindings ()
@@ -333,7 +363,7 @@
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
-(load-font-courier-new)
+(load-font-consolas)
 (set-emacs-keybindings)
 
 ;;
@@ -346,6 +376,8 @@
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
 (add-hook 'haskell-mode         'disable-tabs)
 (add-hook 'fsharp-mode          'disable-tabs)
+
+(add-hook 'typescript-mode      'ctab-4)
 
 ;;; newinit.el ends here
 (custom-set-variables
