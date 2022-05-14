@@ -8,17 +8,37 @@
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 20,
     "editor.lineNumbers": "on",
+    "files.trimTrailingWhitespace": true,
 
     "editor.renderWhitespace": "all",
 
     "workbench.colorCustomizations": {
-        "editorWhitespace.foreground": "#678cb146"
+        "editorWhitespace.foreground": "#678cb146",
     },
+
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "keyword",
+                "settings": {
+                    "fontStyle": "italic bold"
+                }
+            },
+            {
+                "scope": "keyword.operator",
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+
+    "rainbowBrackets.isolatedRightBracketsColor": "#fffbeb",
 
     "window.restoreWindows": "none",
     "files.hotExit": "off",
 
-    "editor.fontFamily": "'Consolas Ligaturized v2', 'Courier New', 'Source Code Pro', Hasklig, Unispace, Consolas, 'JetBrains Mono', 'Lucida Console'",
+    "editor.fontFamily": "'Cascadia Code', 'Source Code Pro', 'Consolas Ligaturized v2', Fira Code, 'Lucida Console', 'Courier New', Hasklig, Unispace, Consolas, 'JetBrains Mono'",
 
     "editor.smoothScrolling": true,
     "editor.scrollbar.verticalScrollbarSize": 4,
@@ -144,15 +164,28 @@
     "workbench.editor.untitled.hint": "hidden",
     "errorLens.fontStyleItalic": true,
     "todohighlight.isEnable": true,
-    "workbench.colorTheme": "Minimal Fedu Ext",
 
     "cSpell.language": "en,de-de",
     "cSpell.userWords": [
         "ABSYN",
+        "bzgl",
+        "gleichbleibt",
+        "innenliegenden",
+        "insb",
         "Neighbour",
+        "Schalenanzahl",
         "Wingler"
     ],
     "editor.lineHeight": 0,
     "editor.fontSize": 16,
     "typescript.updateImportsOnFileMove.enabled": "always",
+    "terminal.integrated.fontSize": 24,
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Field Lights",
+    "errorLens.enabled": true,
+    "liveshare.presence": true,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "cSpell.enabled": false,
+    "editor.bracketPairColorization.enabled": false,
 }
