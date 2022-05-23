@@ -27,12 +27,13 @@ set guicursor+=i:ver100-iCursor
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait10
 
-set guifont=Hasklig:h16
+"set guifont=Hasklig:h16
+set guifont=Cascadia\ Code:16
 
 " colo darknight
 " colo stylus
 " colo naysayer88
-colo aldmeris
+colo desert
 set background=dark
 let g:stylus_terminal_italics = 1
 
@@ -66,6 +67,11 @@ set fileencoding=utf-8
 "key mappings
 "
 :map <C-TAB> <C-N>
+
+:nmap <C-h> b
+:nmap <C-l> w
+:nmap <C-k> {
+:nmap <C-j> }
 
 set whichwrap+=<,>,h,l,[,]
 
