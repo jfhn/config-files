@@ -18,6 +18,7 @@ Plug 'git@github.com:nickburlett/vim-colors-stylus.git'
 Plug 'udalov/kotlin-vim'
 Plug 'jhlgns/naysayer88.vim'
 Plug 'git@github.com:veloce/vim-aldmeris'
+Plug 'git@github.com:d11wtq/subatomic256.vim.git'
 
 call plug#end()
 
@@ -33,7 +34,8 @@ set guifont=Cascadia\ Code:16
 " colo darknight
 " colo stylus
 " colo naysayer88
-colo desert
+" colo desert
+colo subatomic256
 set background=dark
 let g:stylus_terminal_italics = 1
 
