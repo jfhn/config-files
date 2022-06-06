@@ -67,13 +67,20 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 "key mappings
-"
-:map <C-TAB> <C-N>
 
-:nmap <C-h> b
-:nmap <C-l> w
-:nmap <C-k> {
-:nmap <C-j> }
+:map  <C-TAB>   <C-N>
+:map  <C-G>     <ESC>
+
+:nmap <C-h>     b
+:nmap <C-l>     w
+:nmap <C-k>     {
+:nmap <C-j>     }
+:nmap <C-Space> v
+
+:vmap <C-h>     b
+:vmap <C-l>     w
+:vmap <C-k>     {
+:vmap <C-j>     }
 
 set whichwrap+=<,>,h,l,[,]
 
