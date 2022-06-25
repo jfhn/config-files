@@ -31,7 +31,8 @@
 (require 'use-package)
 
 ;; Ensure that all packages are downloaded and installed before they are runned
-(setq use-package-always-ensure t)
+(setq use-package-always-ensure t
+      use-package-always-defer t)
 
 ;; Themes
 (use-package jetbrains-darcula-theme)
@@ -39,6 +40,7 @@
 (use-package gruber-darker-theme)
 (use-package obsidian-theme)
 (use-package monokai-theme)
+(use-package naysayer-theme)
 
 ;; Better UX
 (use-package which-key
@@ -114,8 +116,6 @@
 
 ;; Auto Completion
 (use-package company)
-(use-package flycheck)
-
 
 ;; Modeline configurations
 (setq-default doom-modeline-height 10)
@@ -123,6 +123,12 @@
 (setq-default doom-modeline-indent-info t)
 
 (setq-default doom-modeline-height 20)
+
+(use-package dash)
+
+;; Setup backup directory
+(setq backup-directory-alist '(("." . "~/EmacsBackups")))
+
 
 ;;
 ;; Languages
@@ -142,7 +148,7 @@
 
 ;; Kotlin
 (use-package kotlin-mode)
-(setq-default kotlin-tab-width 8)
+(setq-default kotlin-tab-width 4)
 
 ;; F#
 (use-package fsharp-mode)
@@ -150,8 +156,85 @@
 ;; Markdown
 (use-package markdown-mode)
 
+;; Scala
+(use-package scala-mode
+  :mode "\\.scala")
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+   (setq sbt:program-options '("-Dsbt.supershell=false")))
+
+(use-package lsp-metals
+  :ensure t
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  :hook (scala-mode . lsp-deferred))
+
 ;; TypeScript
-(use-package tide)
+(use-package typescript-mode
+  :mode "\\.tsx?\\'"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 4))
+
+;; Rust
+; (use-package rust-mode)
+(require 'rust-mode)
+
+;; IDE Support
+
+(use-package flycheck
+  :init (global-flycheck-mode))
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+;; Enable nice rendering of documentation on hover
+;;   Warning: on some systems this package can reduce your emacs responsiveness significally.
+;;   (See: https://emacs-lsp.github.io/lsp-mode/page/performance/)
+;;   In that case you have to not only disable this but also remove from the packages since
+;;   lsp-mode can activate it automatically.
+(use-package lsp-ui)
+
+;; lsp-mode supports snippets, but in order for them to work you need to use yasnippet
+;; If you don't want to use snippets set lsp-enable-snippet to nil in your lsp-mode settings
+;;   to avoid odd behavior with snippets and indentation
+(use-package yasnippet)
+
+;; Use company-capf as a completion provider.
+;;
+;; To Company-lsp users:
+;;   Company-lsp is no longer maintained and has been removed from MELPA.
+;;   Please migrate to company-capf.
+(use-package company
+  :hook (scala-mode . company-mode)
+  :config
+  (setq lsp-completion-provider :capf))
+
+;; Use the Debug Adapter Protocol for running tests and debugging
+;; Posframe is a pop-up tool that must be manually installed for dap-mode
+(use-package posframe)
+
+(use-package dap-mode
+  :hook
+  (lsp-mode . dap-mode)
+  (lsp-mode . dap-ui-mode))
+
 
 
 ;;
@@ -174,8 +257,8 @@
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
 ;(load-theme 'obsidian t)
-;(load-theme 'gruber-darker t)
-(load-theme 'monokai t)
+(load-theme 'gruber-darker t)
+;(load-theme 'monokai t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
@@ -202,12 +285,11 @@
  '(whitespace ((t (:foreground "#737373"))))
  '(whitespace-tab ((t (:foreground "#737373"))))
  '(font-lock-type-face ((t (:italic t))))
- '(font-lock-comment-face ((t (:italic t)))))
+ '(font-lock-comment-face ((t (:italic t))))
+ '(font-lock-keyword-face ((t (:bold t)))))
 
 (setq whitespace-display-mappings
       '((tab-mark 9 [124 9] [92 9])))
-
-
 
 
 ;;
@@ -215,7 +297,7 @@
 ;;
 
 (setq-default text-scale-mode-amount 0)
-(setq-default custom-tab-width 8)
+(setq-default custom-tab-width 4)
 
 (setq-default c-default-style "linux"
               c-basic-offset custom-tab-width)
@@ -259,11 +341,20 @@
   (setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
+(defun ctab-2 ()
+  (interactive)
+  (setq-default custom-tab-width 2)
+  (setq-default c-basic-offset custom-tab-width)
+  (setq-default lua-indent-level 2)
+  (setq-default tab-width custom-tab-width)
+  (reload-buffer))
+
 (defun ctab-4 ()
   (interactive)
   (setq-default custom-tab-width 4)
   (setq-default c-basic-offset custom-tab-width)
   (setq-default lua-indent-level 4)
+  (setq-default tab-width custom-tab-width)
   (reload-buffer))
 
 (defun ctab-8 ()
@@ -271,6 +362,7 @@
   (setq-default custom-tab-width 8)
   (setq-default c-basic-offset custom-tab-width)
   (setq-default lua-indent-level 8)
+  (setq-default tab-width custom-tab-width)
   (reload-buffer))
 
 ;; Compilation
@@ -300,6 +392,12 @@
   (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium) ; :slant 'italic
   (set-face-attribute 'mode-line nil :family "Consolas" :height 3)
   (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 10))
+
+(defun load-font-cascadia ()
+  (interactive)
+  (set-face-attribute 'default nil :font "Cascadia Code" :height 140 :weight 'medium) ; :slant 'italic
+  (set-face-attribute 'mode-line nil :family "Cascadia Code" :height 3)
+  (set-face-attribute 'mode-line-inactive nil :family "Cascadia Code" :height 10))
 
 (defun load-font-source-code-pro ()
   (interactive)
@@ -363,7 +461,7 @@
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
-(load-font-consolas)
+(load-font-cascadia)
 (set-emacs-keybindings)
 
 ;;
@@ -376,6 +474,8 @@
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
 (add-hook 'haskell-mode         'disable-tabs)
 (add-hook 'fsharp-mode          'disable-tabs)
+(add-hook 'java-mode            'disable-tabs)
+(add-hook 'scala-mode           'disable-tabs)
 
 (add-hook 'typescript-mode      'ctab-4)
 
