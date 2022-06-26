@@ -192,6 +192,9 @@
 ; (use-package rust-mode)
 (require 'rust-mode)
 
+;; Julia
+(use-package julia-mode)
+
 ;; IDE Support
 
 (use-package flycheck
@@ -418,10 +421,15 @@
   (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 10 :weight 'bold))
 
 ;; TODO
-(defun switch-theme ()
-  (interactive)
-  ;; Disable old theme
-  (load-theme)
+(defun switch-theme (theme)
+  "Switch to another theme."
+  (interactive
+   (list
+    (intern (completing-read "Load custom theme: "
+                             (mapcar #'symbol-name
+                     (custom-available-themes))))))
+  (load-theme theme)
+  (disable-theme (car (last custom-enabled-themes))) ; Disable old theme
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
