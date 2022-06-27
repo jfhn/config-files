@@ -393,32 +393,32 @@
 (defun load-font-consolas ()
   (interactive)
   (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium) ; :slant 'italic
-  (set-face-attribute 'mode-line nil :family "Consolas" :height 3)
-  (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 10))
+  (set-face-attribute 'mode-line nil :family "Consolas" :height 120)
+  (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 120))
 
 (defun load-font-cascadia ()
   (interactive)
   (set-face-attribute 'default nil :font "Cascadia Code" :height 140 :weight 'medium) ; :slant 'italic
-  (set-face-attribute 'mode-line nil :family "Cascadia Code" :height 3)
-  (set-face-attribute 'mode-line-inactive nil :family "Cascadia Code" :height 10))
+  (set-face-attribute 'mode-line nil :family "Cascadia Code" :height 120)
+  (set-face-attribute 'mode-line-inactive nil :family "Cascadia Code" :height 120))
 
 (defun load-font-source-code-pro ()
   (interactive)
   (set-face-attribute 'default nil :font "Source Code Pro" :height 140 :weight 'bold)
-  (set-face-attribute 'mode-line nil :family "Source Code Pro" :height 3)
-  (set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 10))
+  (set-face-attribute 'mode-line nil :family "Source Code Pro" :height 120)
+  (set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 120))
 
 (defun load-font-iosevka ()
   (interactive)
   (set-face-attribute 'default nil :font "Iosevka SS06" :height 150 :weight 'medium :width 'expanded)
-  (set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 3)
-  (set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 10))
+  (set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 120)
+  (set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 120))
 
 (defun load-font-courier-new ()
   (interactive)
   (set-face-attribute 'default nil :font "Courier New Bold" :height 150 :weight 'bold)
-  (set-face-attribute 'mode-line nil :family "Courier New" :height 3 :weight 'bold)
-  (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 10 :weight 'bold))
+  (set-face-attribute 'mode-line nil :family "Courier New" :height 120 :weight 'bold)
+  (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 120 :weight 'bold))
 
 ;; TODO
 (defun switch-theme (theme)
