@@ -431,7 +431,7 @@
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
-(set-font (assoc "Cascadia Code" available-fonts))
+(set-font (assoc "Iosevka SS06" available-fonts))
 (set-emacs-keybindings)
 
 ;;
