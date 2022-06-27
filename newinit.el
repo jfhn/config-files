@@ -278,7 +278,7 @@
 ;; Disable ring bell
 (setq-default ring-bell-function 'ignore)
 
-(setq-default whitespace-style '(face spaces space-mark tab-mark trailing))
+(setq-default whitespace-style '(face spaces tabs space-mark tab-mark trailing))
 (setq-default whitespace-display-mappings
         ;; all numbers are unicode codepoint in decimal. e.g. (insert-char 182 1)
         '(
