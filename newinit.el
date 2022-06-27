@@ -278,21 +278,13 @@
 ;; Disable ring bell
 (setq-default ring-bell-function 'ignore)
 
-(global-whitespace-mode)
-(setq-default whitespace-style '(face tabs tab-mark trailing))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace ((t (:foreground "#737373"))))
- '(whitespace-tab ((t (:foreground "#737373"))))
- '(font-lock-type-face ((t (:italic t))))
- '(font-lock-comment-face ((t (:italic t))))
- '(font-lock-keyword-face ((t (:bold t)))))
-
-(setq whitespace-display-mappings
-      '((tab-mark 9 [124 9] [92 9])))
+(setq-default whitespace-style '(face spaces space-mark tab-mark trailing))
+(setq-default whitespace-display-mappings
+        ;; all numbers are unicode codepoint in decimal. e.g. (insert-char 182 1)
+        '(
+          (space-mark 32 [183]   [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+          (tab-mark   9  [124 9] [92 9])
+          ))
 
 
 ;;
@@ -344,28 +336,12 @@
   (setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
-(defun ctab-2 ()
-  (interactive)
-  (setq-default custom-tab-width 2)
-  (setq-default c-basic-offset custom-tab-width)
-  (setq-default lua-indent-level 2)
-  (setq-default tab-width custom-tab-width)
-  (reload-buffer))
-
-(defun ctab-4 ()
-  (interactive)
-  (setq-default custom-tab-width 4)
-  (setq-default c-basic-offset custom-tab-width)
-  (setq-default lua-indent-level 4)
-  (setq-default tab-width custom-tab-width)
-  (reload-buffer))
-
-(defun ctab-8 ()
-  (interactive)
-  (setq-default custom-tab-width 8)
-  (setq-default c-basic-offset custom-tab-width)
-  (setq-default lua-indent-level 8)
-  (setq-default tab-width custom-tab-width)
+(defun set-tab-width (width)
+  (interactive "nTab Width: ")
+  (setq-default custom-tab-width width)
+  (setq-default c-basic-offset width)
+  (setq-default lua-indent-level width)
+  (setq-default tab-width width)
   (reload-buffer))
 
 ;; Compilation
@@ -390,44 +366,29 @@
   (save-and-trim)
   (revert-buffer :ignore-auto :noconfirm))
 
-(defun load-font-consolas ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Consolas" :height 150 :weight 'medium) ; :slant 'italic
-  (set-face-attribute 'mode-line nil :family "Consolas" :height 120)
-  (set-face-attribute 'mode-line-inactive nil :family "Consolas" :height 120))
+(defvar available-fonts '(("Consolas"        . (150 medium))
+                          ("Cascadia Code"   . (140 medium))
+                          ("Source Code Pro" . (140 bold))
+                          ("Iosevka SS06"    . (150 medium))
+                          ("Courier New"     . (150 bold))))
 
-(defun load-font-cascadia ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Cascadia Code" :height 140 :weight 'medium) ; :slant 'italic
-  (set-face-attribute 'mode-line nil :family "Cascadia Code" :height 120)
-  (set-face-attribute 'mode-line-inactive nil :family "Cascadia Code" :height 120))
+(defun switch-font (font)
+  (interactive
+   (list (completing-read "Select a font: " (mapcar 'car available-fonts))))
+  (set-font (assoc font available-fonts)))
 
-(defun load-font-source-code-pro ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 140 :weight 'bold)
-  (set-face-attribute 'mode-line nil :family "Source Code Pro" :height 120)
-  (set-face-attribute 'mode-line-inactive nil :family "Source Code Pro" :height 120))
+(defun set-font (font-data)
+  (set-face-attribute 'default nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
+  (set-face-attribute 'mode-line nil :family (car font-data) :height 120)
+  (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 120))
 
-(defun load-font-iosevka ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Iosevka SS06" :height 150 :weight 'medium :width 'expanded)
-  (set-face-attribute 'mode-line nil :family "Iosevka SS06" :height 120)
-  (set-face-attribute 'mode-line-inactive nil :family "Iosevka SS06" :height 120))
-
-(defun load-font-courier-new ()
-  (interactive)
-  (set-face-attribute 'default nil :font "Courier New Bold" :height 150 :weight 'bold)
-  (set-face-attribute 'mode-line nil :family "Courier New" :height 120 :weight 'bold)
-  (set-face-attribute 'mode-line-inactive nil :family "Courier New" :height 120 :weight 'bold))
-
-;; TODO
 (defun switch-theme (theme)
   "Switch to another theme."
   (interactive
    (list
     (intern (completing-read "Load custom theme: "
                              (mapcar #'symbol-name
-                     (custom-available-themes))))))
+                                     (custom-available-themes))))))
   (load-theme theme)
   (disable-theme (car (last custom-enabled-themes))) ; Disable old theme
   (custom-set-faces
@@ -435,10 +396,11 @@
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   '(whitespace ((t (:foreground "#737373"))))
+   '(whitespace-space ((t (:foreground "#737373"))))
    '(whitespace-tab ((t (:foreground "#737373"))))
    '(font-lock-type-face ((t (:italic t))))
-   '(font-lock-comment-face ((t (:italic t))))))
+   '(font-lock-comment-face ((t (:italic t))))
+   '(font-lock-keyword-face ((t (:bold t))))))
 
 ;; This is a preparation for evil integration
 (defun set-emacs-keybindings ()
@@ -469,7 +431,7 @@
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
-(load-font-cascadia)
+(set-font (assoc "Cascadia Code" available-fonts))
 (set-emacs-keybindings)
 
 ;;
@@ -477,6 +439,7 @@
 ;;
 
 (add-hook 'prog-mode-hook       'enable-tabs)
+(add-hook 'prog-mode-hook       'whitespace-mode)
 
 (add-hook 'lisp-mode-hook       'disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
@@ -484,8 +447,6 @@
 (add-hook 'fsharp-mode          'disable-tabs)
 (add-hook 'java-mode            'disable-tabs)
 (add-hook 'scala-mode           'disable-tabs)
-
-(add-hook 'typescript-mode      'ctab-4)
 
 ;;; newinit.el ends here
 (custom-set-variables
