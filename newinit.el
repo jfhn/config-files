@@ -267,9 +267,6 @@
 ;(set-face-foreground 'mode-line "white")
 ;(set-face-background 'mode-line "black")
 
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
-
 ;; Set line wrap
 (global-visual-line-mode t)
 
@@ -336,8 +333,13 @@
   (setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
-(defun set-tab-width (width)
+(defun change-tab-width (width)
   (interactive "nTab Width: ")
+  (if (and (>= width 0) (<= width 8))
+      (set-tab-width width)
+    (message "Tab width has to be between 0 and 8 but is %d" width)))
+
+(defun set-tab-width (width)
   (setq-default custom-tab-width width)
   (setq-default c-basic-offset width)
   (setq-default lua-indent-level width)
@@ -382,7 +384,17 @@
   (set-face-attribute 'mode-line nil :family (car font-data) :height 120)
   (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 120))
 
-(defun switch-theme (theme)
+(defun change-background-opacity (alpha)
+  (interactive "nOpacity: ")
+  (if (and (>= alpha 0) (<= alpha 100))
+      (set-background-opacity alpha)
+    (message "Opacity has to be between 0 and 100 but is %d." alpha)))
+
+(defun set-background-opacity (alpha)
+  (set-frame-parameter (selected-frame) 'alpha alpha)
+  (add-to-list 'default-frame-alist 'alpha alpha))
+
+(defun change-theme (theme)
   "Switch to another theme."
   (interactive
    (list
@@ -432,6 +444,7 @@
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
 (set-font (assoc "Iosevka SS06" available-fonts))
+(set-background-opacity 90)
 (set-emacs-keybindings)
 
 ;;
