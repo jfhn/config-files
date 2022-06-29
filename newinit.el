@@ -72,7 +72,7 @@
 (use-package command-log-mode)
 (use-package counsel
   :bind (("M-x"     . counsel-M-x)
-         ;("C-x b"   . counsel-ibuffer)
+         ("C-b"     . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r"     . counsel-minibuffer-history)))
@@ -439,7 +439,7 @@
   (global-set-key (kbd "C-s")       'save-and-trim)
   (global-set-key (kbd "C-f")       'swiper)
   (global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
-  (global-set-key (kbd "C-b")       'switch-to-buffer)
+  (global-set-key (kbd "C-b")       'counsel-ibuffer)
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
