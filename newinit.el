@@ -41,6 +41,7 @@
 (use-package obsidian-theme)
 (use-package monokai-theme)
 (use-package naysayer-theme)
+(use-package mindre-theme)
 
 ;; Better UX
 (use-package which-key
@@ -131,11 +132,12 @@
 
 
 ;;
-;; Languages
+;; Programming Languages
 ;;
 
 ;; Lua
-(use-package lua-mode)
+(use-package lua-mode
+  :hook (lua-mode . lsp-deferred))
 (setq-default lua-indent-level 8)
 (setq-default lua-indent-nested-block-content-align nil)
 
@@ -155,6 +157,9 @@
 
 ;; Markdown
 (use-package markdown-mode)
+
+;; Yaml
+(use-package yaml-mode)
 
 ;; Scala
 (use-package scala-mode
@@ -179,7 +184,8 @@
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . lsp-deferred))
+  ;;:hook (scala-mode . lsp-deferred))
+  )
 
 ;; TypeScript
 (use-package typescript-mode
@@ -238,6 +244,8 @@
   (lsp-mode . dap-mode)
   (lsp-mode . dap-ui-mode))
 
+;; PDF Support
+(use-package pdf-tools)
 
 
 ;;
@@ -282,6 +290,7 @@
           (space-mark 32 [183]   [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
           (tab-mark   9  [124 9] [92 9])
           ))
+(setq-default global-whitespace-mode t)
 
 
 ;;
@@ -372,7 +381,8 @@
                           ("Cascadia Code"   . (140 medium))
                           ("Source Code Pro" . (140 bold))
                           ("Iosevka SS06"    . (150 medium))
-                          ("Courier New"     . (150 bold))))
+                          ("Courier New"     . (150 bold))
+                          ("Lucida Console"  . (140 normal))))
 
 (defun switch-font (font)
   (interactive
@@ -452,7 +462,6 @@
 ;;
 
 (add-hook 'prog-mode-hook       'enable-tabs)
-(add-hook 'prog-mode-hook       'whitespace-mode)
 
 (add-hook 'lisp-mode-hook       'disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'disable-tabs)
