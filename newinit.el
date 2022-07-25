@@ -42,6 +42,8 @@
 (use-package monokai-theme)
 (use-package naysayer-theme)
 (use-package mindre-theme)
+(use-package solarized-theme)
+(use-package zenburn-theme)
 
 ;; Better UX
 (use-package which-key
@@ -102,6 +104,8 @@
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
+
+(use-package org)
 
 (use-package multiple-cursors
   ;; :straight t
@@ -268,8 +272,9 @@
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
 ;(load-theme 'obsidian t)
-(load-theme 'gruber-darker t)
+;(load-theme 'gruber-darker t)
 ;(load-theme 'monokai t)
+(load-theme 'zenburn t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
@@ -413,16 +418,18 @@
                                      (custom-available-themes))))))
   (load-theme theme)
   (disable-theme (car (last custom-enabled-themes))) ; Disable old theme
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(whitespace-space ((t (:foreground "#737373"))))
-   '(whitespace-tab ((t (:foreground "#737373"))))
-   '(font-lock-type-face ((t (:italic t))))
-   '(font-lock-comment-face ((t (:italic t))))
-   '(font-lock-keyword-face ((t (:bold t))))))
+  (let ((bg-color (face-attribute 'default :background)))
+    (message bg-color)
+    (custom-set-faces
+     ;; custom-set-faces was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     `(whitespace-space ((t (:foreground "#737373" :background ,bg-color))))
+     `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))
+     '(font-lock-type-face ((t (:italic t))))
+     '(font-lock-comment-face ((t (:italic t))))
+     '(font-lock-keyword-face ((t (:bold t)))))))
 
 ;; This is a preparation for evil integration
 (defun set-emacs-keybindings ()
@@ -453,7 +460,7 @@
   (global-set-key (kbd "M-m")       'compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
 
-(set-font (assoc "Iosevka SS06" available-fonts))
+(set-font (assoc "Cascadia Code" available-fonts))
 (set-background-opacity 90)
 (set-emacs-keybindings)
 
@@ -480,3 +487,9 @@
    '(markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
 
 (find-file "~/dev/todo.md")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
