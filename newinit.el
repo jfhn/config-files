@@ -425,11 +425,29 @@
      ;; If you edit it by hand, you could mess it up, so be careful.
      ;; Your init file should contain only one such instance.
      ;; If there is more than one, they won't work right.
-     `(whitespace-space ((t (:foreground "#737373" :background ,bg-color))))
-     `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))
      '(font-lock-type-face ((t (:italic t))))
      '(font-lock-comment-face ((t (:italic t))))
-     '(font-lock-keyword-face ((t (:bold t)))))))
+     '(font-lock-keyword-face ((t (:bold t))))))
+  (if (eq global-whitespace-mode t)
+      (show-whitespaces)
+    ()))
+
+(defun show-whitespaces ()
+  (interactive)
+  (let ((bg-color (face-attribute 'default :background)))
+    (message bg-color)
+    (custom-set-faces
+     ;; custom-set-faces was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     `(whitespace-space ((t (:foreground "#737373" :background ,bg-color))))
+     `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))))
+  (global-whitespace-mode 1))
+
+(defun hide-whitespaces ()
+  (interactive)
+  (global-whitespace-mode 0))
 
 ;; This is a preparation for evil integration
 (defun set-emacs-keybindings ()
