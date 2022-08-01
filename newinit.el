@@ -5,6 +5,12 @@
 
 ;;; Code:
 
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-language-environment 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+
 ;;
 ;; Packages
 ;;
@@ -140,8 +146,8 @@
 ;;
 
 ;; Lua
-(use-package lua-mode
-  :hook (lua-mode . lsp-deferred))
+(use-package lua-mode)
+  ;:hook (lua-mode . lsp-deferred))
 (setq-default lua-indent-level 8)
 (setq-default lua-indent-nested-block-content-align nil)
 
@@ -272,9 +278,9 @@
 ;(load-theme 'jetbrains-darcula t)
 ;(load-theme 'subatomic t)
 ;(load-theme 'obsidian t)
-;(load-theme 'gruber-darker t)
+(load-theme 'gruber-darker t)
 ;(load-theme 'monokai t)
-(load-theme 'zenburn t)
+;(load-theme 'zenburn t)
 
 ; Not needed for gruber-darker
 ;(set-face-foreground 'mode-line "white")
