@@ -388,6 +388,33 @@
   (save-and-trim)
   (revert-buffer :ignore-auto :noconfirm))
 
+(defun user:align-regexp (beg end regexp &optional group spacing repeat)
+  (interactive
+   (append
+    (list (region-beginning) (region-end))
+    (if current-prefix-arg
+        (list (read-string "Complex align using regexp: "
+                           "\\(\\s-*\\)" 'align-regexp-history)
+              (string-to-number
+               (read-string
+                "Parenthesis group to modify (justify if negative): " "1"))
+              (string-to-number
+               (read-string "Amount of spacing (or column if negative): "
+                            (number-to-string align-default-spacing)))
+              (y-or-n-p "Repeat throughout line? "))
+      (list (concat "\\(\\s-*\\)"
+                    (read-string "Align regexp: "))
+            1 align-default-spacing nil))))
+  (let ((were-tabs-enabled indent-tabs-mode))
+    (if (eq were-tabs-enabled t)
+        (disable-tabs)
+      ())
+    (align-regexp beg end regexp group spacing repeat)
+    (if (eq were-tabs-enabled t)
+        (enable-tabs)
+      ())))
+
+
 (defvar available-fonts '(("Consolas"        . (150 medium))
                           ("Cascadia Code"   . (140 medium))
                           ("Source Code Pro" . (140 bold))
@@ -510,7 +537,7 @@
  '(package-selected-packages
    '(markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
 
-(find-file "~/dev/todo.md")
+(find-file "~/dev/todo.org")
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
