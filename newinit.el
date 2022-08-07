@@ -113,6 +113,12 @@
 
 (use-package org)
 
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("0" "1" "2" "3" "4" "5" "6")))
+
 (use-package multiple-cursors
   ;; :straight t
   :ensure   t
@@ -303,6 +309,33 @@
           ))
 (setq-default global-whitespace-mode t)
 
+(load-file "~/dev/stuff/ligature.el/ligature.el")
+(use-package ligature
+  :load-path "~/dev/stuff/ligature.el"
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
 
 ;;
 ;; Variables
@@ -428,6 +461,7 @@
   (set-font (assoc font available-fonts)))
 
 (defun set-font (font-data)
+  (set-face-attribute 'fixed-pitch nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
   (set-face-attribute 'default nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
   (set-face-attribute 'mode-line nil :family (car font-data) :height 120)
   (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 120))
@@ -514,6 +548,7 @@
 (set-font (assoc "Cascadia Code" available-fonts))
 (set-background-opacity 90)
 (set-emacs-keybindings)
+(show-whitespaces)
 
 ;;
 ;; Hooks
