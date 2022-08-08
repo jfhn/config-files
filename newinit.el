@@ -174,6 +174,31 @@
 ;; Markdown
 (use-package markdown-mode)
 
+;; LaTeX
+(use-package auctex)
+(use-package company-auctex)
+
+;; (use-package latex
+;;   :config
+;;   (setq-default TeX-master nil) ; Asks for master document
+;;   ;; Enable PDF preview
+;;   (setq TeX-view-program-selection '((output-pdf "pdf-tools")))
+;;   (setq TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
+;;   ;; Enable reftex
+;;   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;;   (setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource")))
+
+(use-package latex-preview-pane
+  :requires latex
+  :config
+  (add-hook 'LaTeX-mode-hook 'latex-preview-pane-mode))
+
+(use-package golden-ratio
+  :requires (latex latex-preview-pane)
+  :config
+  ;; Enable golden ratio for LaTeX preview
+  (add-hook 'LaTeX-mode-hook (lambda () (golden-ratio-mode 1))))
+
 ;; Yaml
 (use-package yaml-mode)
 
