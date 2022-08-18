@@ -50,6 +50,7 @@
 (use-package mindre-theme)
 (use-package solarized-theme)
 (use-package zenburn-theme)
+(use-package gruvbox-theme)
 
 ;; Better UX
 (use-package which-key
@@ -508,7 +509,7 @@
     (intern (completing-read "Load custom theme: "
                              (mapcar #'symbol-name
                                      (custom-available-themes))))))
-  (load-theme theme)
+  (load-theme theme t)
   (disable-theme (car (last custom-enabled-themes))) ; Disable old theme
   (let ((bg-color (face-attribute 'default :background)))
     (message bg-color)
@@ -594,8 +595,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("f028e1985041fd072fa9063221ee9c9368a570d26bd6660edbd00052d112e8bb" default))
  '(package-selected-packages
-   '(markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
+   '(gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
 
 (find-file "~/dev/todo.org")
 (custom-set-faces
@@ -603,4 +606,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(whitespace-space ((t (:foreground "#737373" :background "#181818"))))
+ '(whitespace-tab ((t (:foreground "#737373" :background "#181818")))))
