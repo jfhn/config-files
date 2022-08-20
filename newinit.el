@@ -575,6 +575,8 @@
 (set-background-opacity 90)
 (set-emacs-keybindings)
 (show-whitespaces)
+(global-flycheck-mode nil)
+(global-company-mode t)
 
 ;;
 ;; Hooks
