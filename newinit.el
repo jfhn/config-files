@@ -245,8 +245,7 @@
 
 ;; IDE Support
 
-(use-package flycheck
-  :init (global-flycheck-mode))
+(use-package flycheck)
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -274,6 +273,7 @@
 ;;   Please migrate to company-capf.
 (use-package company
   :hook (scala-mode . company-mode)
+  :init (global-company-mode)
   :config
   (setq lsp-completion-provider :capf))
 
@@ -313,10 +313,6 @@
 (load-theme 'gruber-darker t)
 ;(load-theme 'monokai t)
 ;(load-theme 'zenburn t)
-
-; Not needed for gruber-darker
-;(set-face-foreground 'mode-line "white")
-;(set-face-background 'mode-line "black")
 
 ;; Set line wrap
 (global-visual-line-mode t)
@@ -383,42 +379,41 @@
 ;;
 
 ;; Scroll
-;; TODO: Tweak values
-(defun get-scroll-height ()
-  (if (= 0 text-scale-mode-amount)
-      2
-    (* 2 text-scale-mode-amount)))
+(defun user/calc-scroll-height ()
+  (format-message "window height = %d" (- (window-height (selected-window)) 2))
+  (format-message "text scale    = %.2f" (expt 1.2 text-scale-mode-amount))
+  (let ((actual-height (/ (- (window-height (selected-window)) 2)
+                          (expt 1.2 text-scale-mode-amount))))
+    (truncate (/ actual-height 2))))
 
-(defun calc-scroll-height ()
-  (max 1 (/ (1- (window-height (selected-window))) (get-scroll-height))))
-
-(defun scroll-fast-up ()
+(defun user/scroll-half-page-up ()
+  "Scrolls a half page up."
   (interactive)
-  (scroll-down (calc-scroll-height))
+  (scroll-down (user/calc-scroll-height))
   (move-to-window-line nil))
 
-(defun scroll-fast-down ()
+(defun user/scroll-half-page-down ()
   (interactive)
-  (scroll-up (calc-scroll-height))
+  (scroll-up (user/calc-scroll-height))
   (move-to-window-line nil))
 
 ;; Indentation
-(defun disable-tabs ()
+(defun user/disable-tabs ()
   (interactive)
   (setq indent-tabs-mode nil))
 
-(defun enable-tabs ()
+(defun user/enable-tabs ()
   (interactive)
   (setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
-(defun change-tab-width (width)
+(defun user/change-tab-width (width)
   (interactive "nTab Width: ")
   (if (and (>= width 0) (<= width 8))
       (set-tab-width width)
     (message "Tab width has to be between 0 and 8 but is %d" width)))
 
-(defun set-tab-width (width)
+(defun user/set-tab-width (width)
   (setq-default custom-tab-width width)
   (setq-default c-basic-offset width)
   (setq-default lua-indent-level width)
@@ -426,28 +421,30 @@
   (reload-buffer))
 
 ;; Compilation
-(defun compile-with-build-script ()
+(defun user/compile-with-build-script ()
   (interactive)
   (if (file-exists-p build-script-name)
       (compile build-script-name)
     (cd "..")))
 
 ;; Misc
-(defun save-and-trim ()
+(defun user/trim-and-save ()
+  "Trims trailing whitespaces and saves the current buffer."
   (interactive)
   (delete-trailing-whitespace)
   (save-buffer))
 
-(defun open-cmd-buffer ()
+(defun user/open-cmd-buffer ()
+  "Opens the command log buffer."
   (interactive)
   (clm/open-command-log-buffer))
 
-(defun reload-buffer ()
+(defun user/reload-buffer ()
   (interactive)
-  (save-and-trim)
+  (trim-and-save)
   (revert-buffer :ignore-auto :noconfirm))
 
-(defun user:align-regexp (beg end regexp &optional group spacing repeat)
+(defun user/align-regexp (beg end regexp &optional group spacing repeat)
   (interactive
    (append
     (list (region-beginning) (region-end))
@@ -474,35 +471,36 @@
       ())))
 
 
-(defvar available-fonts '(("Consolas"        . (150 medium))
-                          ("Cascadia Code"   . (140 medium))
-                          ("Source Code Pro" . (140 bold))
-                          ("Iosevka SS06"    . (150 medium))
-                          ("Courier New"     . (150 bold))
-                          ("Lucida Console"  . (140 normal))))
+(defvar user/available-fonts '(("Consolas"        . (150 medium))
+                               ("Cascadia Code"   . (140 medium))
+                               ("Source Code Pro" . (140 bold))
+                               ("Iosevka SS06"    . (150 medium))
+                               ("Courier New"     . (150 bold))
+                               ("Lucida Console"  . (140 normal))
+                               ("Fira Code"       . (120 medium))))
 
-(defun switch-font (font)
+(defun user/change-font (font)
   (interactive
-   (list (completing-read "Select a font: " (mapcar 'car available-fonts))))
-  (set-font (assoc font available-fonts)))
+   (list (completing-read "Select a font: " (mapcar 'car user/available-fonts))))
+  (user/set-font (assoc font user/available-fonts)))
 
-(defun set-font (font-data)
+(defun user/set-font (font-data)
   (set-face-attribute 'fixed-pitch nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
   (set-face-attribute 'default nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
   (set-face-attribute 'mode-line nil :family (car font-data) :height 120)
   (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 120))
 
-(defun change-background-opacity (alpha)
+(defun user/change-background-opacity (alpha)
   (interactive "nOpacity: ")
   (if (and (>= alpha 0) (<= alpha 100))
-      (set-background-opacity alpha)
+      (user/set-background-opacity alpha)
     (message "Opacity has to be between 0 and 100 but is %d." alpha)))
 
-(defun set-background-opacity (alpha)
+(defun user/set-background-opacity (alpha)
   (set-frame-parameter (selected-frame) 'alpha alpha)
   (add-to-list 'default-frame-alist 'alpha alpha))
 
-(defun change-theme (theme)
+(defun user/change-theme (theme)
   "Switch to another theme."
   (interactive
    (list
@@ -525,7 +523,7 @@
       (show-whitespaces)
     ()))
 
-(defun show-whitespaces ()
+(defun user/show-whitespaces ()
   (interactive)
   (let ((bg-color (face-attribute 'default :background)))
     (message bg-color)
@@ -538,12 +536,12 @@
      `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))))
   (global-whitespace-mode 1))
 
-(defun hide-whitespaces ()
+(defun user/hide-whitespaces ()
   (interactive)
   (global-whitespace-mode 0))
 
 ;; This is a preparation for evil integration
-(defun set-emacs-keybindings ()
+(defun user/set-emacs-keybindings ()
   (interactive)
   (global-unset-key (kbd "C-x C-s"))
   (global-unset-key (kbd "C-x b"))
@@ -556,27 +554,29 @@
   (global-set-key (kbd "C-y")       'kill-ring-save)
 
   ;; Scrolling
-  (global-set-key (kbd "M-<up>")   'scroll-fast-up)
-  (global-set-key (kbd "M-<down>") 'scroll-fast-down)
+  (global-set-key (kbd "M-<up>")   'user/scroll-half-page-up)
+  (global-set-key (kbd "M-<down>") 'user/scroll-half-page-down)
 
   ;; Windows (not the OS)
   (global-set-key (kbd "C-c C-v")    'split-window-right)
 
   ;; Misc
   (global-set-key (kbd "<escape>")  'keyboard-escape-quit)
-  (global-set-key (kbd "C-s")       'save-and-trim)
+  (global-set-key (kbd "C-s")       'user/trim-and-save)
   (global-set-key (kbd "C-f")       'swiper)
   (global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
   (global-set-key (kbd "C-b")       'counsel-ibuffer)
   (global-set-key (kbd "M-m")       'compile-with-build-script)
-  (global-set-key (kbd "<backtab>") 'tab-to-tab-stop))
+  (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
+  (global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs))
 
-(set-font (assoc "Cascadia Code" available-fonts))
-(set-background-opacity 90)
-(set-emacs-keybindings)
-(show-whitespaces)
-(global-flycheck-mode nil)
-(global-company-mode t)
+(user/set-font (assoc "Lucida Console" user/available-fonts))
+(user/set-background-opacity 90)
+(user/set-emacs-keybindings)
+(user/show-whitespaces)
+(setq-default global-flycheck-mode nil)
+(setq-default global-company-mode t)
+(toggle-frame-fullscreen)
 
 ;;
 ;; Hooks
@@ -591,6 +591,11 @@
 (add-hook 'java-mode            'disable-tabs)
 (add-hook 'scala-mode           'disable-tabs)
 
+(find-file "~/dev/todo.org")
+(split-window-right)
+(calendar)
+(other-window 1)
+
 ;;; newinit.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -602,7 +607,6 @@
  '(package-selected-packages
    '(gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
 
-(find-file "~/dev/todo.org")
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
