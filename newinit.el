@@ -410,7 +410,7 @@
 (defun user/change-tab-width (width)
   (interactive "nTab Width: ")
   (if (and (>= width 0) (<= width 8))
-      (set-tab-width width)
+      (user/set-tab-width width)
     (message "Tab width has to be between 0 and 8 but is %d" width)))
 
 (defun user/set-tab-width (width)
@@ -418,7 +418,7 @@
   (setq-default c-basic-offset width)
   (setq-default lua-indent-level width)
   (setq-default tab-width width)
-  (reload-buffer))
+  (user/reload-buffer))
 
 ;; Compilation
 (defun user/compile-with-build-script ()
@@ -441,7 +441,7 @@
 
 (defun user/reload-buffer ()
   (interactive)
-  (trim-and-save)
+  (user/trim-and-save)
   (revert-buffer :ignore-auto :noconfirm))
 
 (defun user/align-regexp (beg end regexp &optional group spacing repeat)
@@ -463,11 +463,11 @@
             1 align-default-spacing nil))))
   (let ((were-tabs-enabled indent-tabs-mode))
     (if (eq were-tabs-enabled t)
-        (disable-tabs)
+        (user/disable-tabs)
       ())
     (align-regexp beg end regexp group spacing repeat)
     (if (eq were-tabs-enabled t)
-        (enable-tabs)
+        (user/enable-tabs)
       ())))
 
 
@@ -582,14 +582,14 @@
 ;; Hooks
 ;;
 
-(add-hook 'prog-mode-hook       'enable-tabs)
+(add-hook 'prog-mode-hook       'user/enable-tabs)
 
-(add-hook 'lisp-mode-hook       'disable-tabs)
-(add-hook 'emacs-lisp-mode-hook 'disable-tabs)
-(add-hook 'haskell-mode         'disable-tabs)
-(add-hook 'fsharp-mode          'disable-tabs)
-(add-hook 'java-mode            'disable-tabs)
-(add-hook 'scala-mode           'disable-tabs)
+(add-hook 'lisp-mode-hook       'user/disable-tabs)
+(add-hook 'emacs-lisp-mode-hook 'user/disable-tabs)
+(add-hook 'haskell-mode         'user/disable-tabs)
+(add-hook 'fsharp-mode          'user/disable-tabs)
+(add-hook 'java-mode            'user/disable-tabs)
+(add-hook 'scala-mode           'user/disable-tabs)
 
 (find-file "~/dev/todo.org")
 (split-window-right)
