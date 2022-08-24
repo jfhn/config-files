@@ -566,11 +566,11 @@
   (global-set-key (kbd "C-f")       'swiper)
   (global-set-key (kbd "C-M-f")     'isearch-forward-regexp)
   (global-set-key (kbd "C-b")       'counsel-ibuffer)
-  (global-set-key (kbd "M-m")       'compile-with-build-script)
+  (global-set-key (kbd "M-m")       'user/compile-with-build-script)
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
   (global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs))
 
-(user/set-font (assoc "Lucida Console" user/available-fonts))
+(user/set-font (assoc "Fira Code" user/available-fonts))
 (user/set-background-opacity 90)
 (user/set-emacs-keybindings)
 (user/show-whitespaces)
