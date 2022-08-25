@@ -520,6 +520,7 @@
      '(font-lock-comment-face ((t (:italic t))))
      '(font-lock-keyword-face ((t (:bold t))))))
   (if (eq global-whitespace-mode t)
+      (hide-whitespaces)
       (show-whitespaces)
     ()))
 
