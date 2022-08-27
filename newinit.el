@@ -226,7 +226,7 @@
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  ;;:hook (scala-mode . lsp-deferred))
+  ;;:hook (scala-mode . user/disable-tabs))
   )
 
 ;; TypeScript
@@ -471,13 +471,14 @@
       ())))
 
 
-(defvar user/available-fonts '(("Consolas"        . (150 medium))
-                               ("Cascadia Code"   . (140 medium))
-                               ("Source Code Pro" . (140 bold))
-                               ("Iosevka SS06"    . (150 medium))
-                               ("Courier New"     . (150 bold))
-                               ("Lucida Console"  . (140 normal))
-                               ("Fira Code"       . (120 medium))))
+(defvar user/available-fonts '(("Consolas"                . (140 medium))
+                               ("Consolas ligaturized v2" . (140 medium))
+                               ("Cascadia Code"           . (140 medium))
+                               ("Source Code Pro"         . (140 bold))
+                               ("Iosevka SS06"            . (150 medium))
+                               ("Courier New"             . (150 bold))
+                               ("Lucida Console"          . (140 normal))
+                               ("Fira Code"               . (120 medium))))
 
 (defun user/change-font (font)
   (interactive
@@ -512,16 +513,11 @@
   (let ((bg-color (face-attribute 'default :background)))
     (message bg-color)
     (custom-set-faces
-     ;; custom-set-faces was added by Custom.
-     ;; If you edit it by hand, you could mess it up, so be careful.
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
      '(font-lock-type-face ((t (:italic t))))
      '(font-lock-comment-face ((t (:italic t))))
-     '(font-lock-keyword-face ((t (:bold t))))))
+     '(font-lock-keyword-face ((t (:bold t :italic t))))))
   (if (eq global-whitespace-mode t)
-      (hide-whitespaces)
-      (show-whitespaces)
+      (user/show-whitespaces)
     ()))
 
 (defun user/show-whitespaces ()
@@ -529,10 +525,6 @@
   (let ((bg-color (face-attribute 'default :background)))
     (message bg-color)
     (custom-set-faces
-     ;; custom-set-faces was added by Custom.
-     ;; If you edit it by hand, you could mess it up, so be careful.
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
      `(whitespace-space ((t (:foreground "#737373" :background ,bg-color))))
      `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))))
   (global-whitespace-mode 1))
@@ -571,7 +563,7 @@
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
   (global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs))
 
-(user/set-font (assoc "Fira Code" user/available-fonts))
+(user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
 (user/set-background-opacity 90)
 (user/set-emacs-keybindings)
 (user/show-whitespaces)
@@ -587,10 +579,10 @@
 
 (add-hook 'lisp-mode-hook       'user/disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'user/disable-tabs)
-(add-hook 'haskell-mode         'user/disable-tabs)
-(add-hook 'fsharp-mode          'user/disable-tabs)
-(add-hook 'java-mode            'user/disable-tabs)
-(add-hook 'scala-mode           'user/disable-tabs)
+(add-hook 'haskell-mode-hook    'user/disable-tabs)
+(add-hook 'fsharp-mode-hook     'user/disable-tabs)
+(add-hook 'java-mode-hook       'user/disable-tabs)
+(add-hook 'scala-mode-hook      'user/disable-tabs)
 
 (find-file "~/dev/todo.org")
 (split-window-right)
