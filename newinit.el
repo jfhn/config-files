@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(setq-default debug-on-error t)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-language-environment 'utf-8)
@@ -304,16 +306,6 @@
 (menu-bar-mode   -1) ; Disable menubar
 (set-fringe-mode 10)
 
-;; Set theme
-;(load-theme 'misterioso)
-;(load-theme 'tango-dark)
-;(load-theme 'jetbrains-darcula t)
-;(load-theme 'subatomic t)
-;(load-theme 'obsidian t)
-(load-theme 'gruber-darker t)
-;(load-theme 'monokai t)
-;(load-theme 'zenburn t)
-
 ;; Set line wrap
 (global-visual-line-mode t)
 
@@ -329,7 +321,8 @@
           (space-mark 32 [183]   [46]) ; SPACE 32 「 」, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
           (tab-mark   9  [124 9] [92 9])
           ))
-(setq-default global-whitespace-mode t)
+
+; (global-whitespace-mode 1)
 
 (load-file "~/dev/stuff/ligature.el/ligature.el")
 (use-package ligature
@@ -495,11 +488,11 @@
   (interactive "nOpacity: ")
   (if (and (>= alpha 0) (<= alpha 100))
       (user/set-background-opacity alpha)
-    (message "Opacity has to be between 0 and 100 but is %d." alpha)))
+    (format-message "Opacity has to be between 0 and 100 but is %d." alpha)))
 
 (defun user/set-background-opacity (alpha)
   (set-frame-parameter (selected-frame) 'alpha alpha)
-  (add-to-list 'default-frame-alist 'alpha alpha))
+  (add-to-list 'default-frame-alist (cons 'alpha alpha)))
 
 (defun user/change-theme (theme)
   "Switch to another theme."
@@ -508,14 +501,17 @@
     (intern (completing-read "Load custom theme: "
                              (mapcar #'symbol-name
                                      (custom-available-themes))))))
+  (user/set-theme theme))
+
+(defun user/set-theme (theme)
+  (while (not (null custom-enabled-themes))
+    (disable-theme (car custom-enabled-themes)))
   (load-theme theme t)
-  (disable-theme (car (last custom-enabled-themes))) ; Disable old theme
-  (let ((bg-color (face-attribute 'default :background)))
-    (message bg-color)
-    (custom-set-faces
-     '(font-lock-type-face ((t (:italic t))))
-     '(font-lock-comment-face ((t (:italic t))))
-     '(font-lock-keyword-face ((t (:bold t :italic t))))))
+  (format-message "Load theme %s" theme)
+  (custom-set-faces
+   '(font-lock-type-face ((t (:italic t))))
+   '(font-lock-comment-face ((t (:italic t))))
+   '(font-lock-keyword-face ((t (:bold t :italic t)))))
   (if (eq global-whitespace-mode t)
       (user/show-whitespaces)
     ()))
@@ -523,7 +519,6 @@
 (defun user/show-whitespaces ()
   (interactive)
   (let ((bg-color (face-attribute 'default :background)))
-    (message bg-color)
     (custom-set-faces
      `(whitespace-space ((t (:foreground "#737373" :background ,bg-color))))
      `(whitespace-tab ((t (:foreground "#737373" :background ,bg-color))))))
@@ -563,14 +558,6 @@
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
   (global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs))
 
-(user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
-(user/set-background-opacity 90)
-(user/set-emacs-keybindings)
-(user/show-whitespaces)
-(setq-default global-flycheck-mode nil)
-(setq-default global-company-mode t)
-(toggle-frame-fullscreen)
-
 ;;
 ;; Hooks
 ;;
@@ -584,8 +571,21 @@
 (add-hook 'java-mode-hook       'user/disable-tabs)
 (add-hook 'scala-mode-hook      'user/disable-tabs)
 
+
+;;
+;; Actual configuration
+;;
+
+(user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
+(user/set-theme 'gruvbox-dark-hard)
+(user/set-emacs-keybindings)
+(setq-default global-flycheck-mode nil)
+(setq-default global-company-mode t)
+(toggle-frame-fullscreen)
+(user/set-background-opacity 90)
+(user/show-whitespaces)
+
 (find-file "~/dev/todo.org")
-(split-window-right)
 (calendar)
 (other-window 1)
 
@@ -596,14 +596,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("f028e1985041fd072fa9063221ee9c9368a570d26bd6660edbd00052d112e8bb" default))
+   '("03e26cd42c3225e6376d7808c946f7bed6382d795618a82c8f3838cd2097a9cc" "f028e1985041fd072fa9063221ee9c9368a570d26bd6660edbd00052d112e8bb" default))
  '(package-selected-packages
    '(gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-space ((t (:foreground "#737373" :background "#181818"))))
- '(whitespace-tab ((t (:foreground "#737373" :background "#181818")))))
