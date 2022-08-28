@@ -53,6 +53,7 @@
 (use-package solarized-theme)
 (use-package zenburn-theme)
 (use-package gruvbox-theme)
+(use-package sublime-themes)
 
 ;; Better UX
 (use-package which-key
@@ -577,7 +578,7 @@
 ;;
 
 (user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
-(user/set-theme 'gruvbox-dark-hard)
+(user/set-theme 'subatomic)
 (user/set-emacs-keybindings)
 (setq-default global-flycheck-mode nil)
 (setq-default global-company-mode t)
@@ -598,4 +599,4 @@
  '(custom-safe-themes
    '("03e26cd42c3225e6376d7808c946f7bed6382d795618a82c8f3838cd2097a9cc" "f028e1985041fd072fa9063221ee9c9368a570d26bd6660edbd00052d112e8bb" default))
  '(package-selected-packages
-   '(gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
+   '(sublime-themes emacs-color-themes gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
