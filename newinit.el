@@ -504,9 +504,12 @@
                                      (custom-available-themes))))))
   (user/set-theme theme))
 
-(defun user/set-theme (theme)
+(defun user/disable-all-themes ()
   (while (not (null custom-enabled-themes))
-    (disable-theme (car custom-enabled-themes)))
+    (disable-theme (car custom-enabled-themes))))
+
+(defun user/set-theme (theme)
+  (user/disable-all-themes)
   (load-theme theme t)
   (format-message "Load theme %s" theme)
   (custom-set-faces
@@ -516,6 +519,27 @@
   (if (eq global-whitespace-mode t)
       (user/show-whitespaces)
     ()))
+
+(defun user/jblow-theme ()
+  (interactive)
+  (user/disable-all-themes)
+  ;; New theme
+  (custom-set-faces
+   '(default ((t (:foreground "#d3b58d" :background "#041818"))))
+   '(custom-group-tag-face ((t (:underline t :foreground "lightblue"))) t)
+   '(custom-variable-tag-face ((t (:underline t :foreground "lightblue"))) t)
+   '(font-lock-builtin-face ((t nil)))
+   '(font-lock-comment-face ((t (:foreground "#3fdf1f"))))
+   '(font-lock-function-name-face ((((class color) (background dark)) (:foreground "white"))))
+   '(font-lock-keyword-face ((t (:foreground "white"))))
+   '(font-lock-string-face ((t (:foreground "#0fdfaf"))))
+   '(font-lock-variable-name-face ((((class color) (background dark)) (:foreground "#c8d4ec"))))
+   '(font-lock-warning-face ((t (:foreground "#504038"))))
+   '(highlight ((t (:foreground "navyblue" :background "darkseagreen2"))))
+   '(mode-line ((t (:inverse-video t))))
+   '(region ((t (:background "blue"))))
+   '(widget-field-face ((t (:foreground "white"))) t)
+   '(widget-single-line-field ((t (:background "darkgray"))) t)))
 
 (defun user/show-whitespaces ()
   (interactive)
@@ -568,7 +592,7 @@
 (add-hook 'lisp-mode-hook       'user/disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'user/disable-tabs)
 (add-hook 'haskell-mode-hook    'user/disable-tabs)
-;(add-hook 'haskell-mode-hook    'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook    'interactive-haskell-mode)
 (add-hook 'haskell-mode-hook    'haskell-indent-mode)
 (add-hook 'haskell-mode-hook    'haskell-doc-mode)
 (add-hook 'fsharp-mode-hook     'user/disable-tabs)
@@ -581,7 +605,7 @@
 ;;
 
 (user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
-(user/set-theme 'subatomic)
+(user/set-theme 'gruvbox)
 (user/set-emacs-keybindings)
 (setq-default global-flycheck-mode nil)
 (setq-default global-company-mode t)
@@ -603,3 +627,4 @@
    '("03e26cd42c3225e6376d7808c946f7bed6382d795618a82c8f3838cd2097a9cc" "f028e1985041fd072fa9063221ee9c9368a570d26bd6660edbd00052d112e8bb" default))
  '(package-selected-packages
    '(sublime-themes emacs-color-themes gruvbox-theme markdown-mode fsharp-mode kotlin-mode go-mode haskell-mode lua-mode autothemer multiple-cursors doom-modeline magit counsel-projectile projectile ivy-rich counsel helpful all-the-icons ivy which-key use-package ucs-utils subatomic-theme string-utils smartrep s rainbow-delimiters pkg-info obsidian-theme latex-preview-pane jetbrains-darcula-theme gruber-darker-theme command-log-mode)))
+(put 'upcase-region 'disabled nil)
