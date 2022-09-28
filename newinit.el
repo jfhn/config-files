@@ -472,7 +472,9 @@
                                ("Iosevka SS06"            . (150 medium))
                                ("Courier New"             . (150 bold))
                                ("Lucida Console"          . (140 normal))
-                               ("Fira Code"               . (120 medium))))
+                               ("Fira Code"               . (120 medium))
+                               ("Ubuntu Mono"             . (160 medium))
+                               ("Ubuntu Mono Ligaturized" . (160 medium))))
 
 (defun user/change-font (font)
   (interactive
@@ -583,28 +585,35 @@
   (global-set-key (kbd "<backtab>") 'tab-to-tab-stop)
   (global-set-key (kbd "M-<f4>")    'save-buffers-kill-emacs))
 
+
 ;;
 ;; Hooks
 ;;
+
+(defun user/on-lua-mode ()
+  (setq-default lua-indent-level custom-tab-width))
+
+(defun user/on-haskell-mode ()
+  (user/disable-tabs)
+  (interactive-haskell-mode)
+  (haskell-indent-mode)
+  (haskell-doc-mode))
 
 (add-hook 'prog-mode-hook       'user/enable-tabs)
 
 (add-hook 'lisp-mode-hook       'user/disable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'user/disable-tabs)
-(add-hook 'haskell-mode-hook    'user/disable-tabs)
-(add-hook 'haskell-mode-hook    'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook    'haskell-indent-mode)
-(add-hook 'haskell-mode-hook    'haskell-doc-mode)
+(add-hook 'haskell-mode-hook    'user/on-haskell-mode)
 (add-hook 'fsharp-mode-hook     'user/disable-tabs)
 (add-hook 'java-mode-hook       'user/disable-tabs)
 (add-hook 'scala-mode-hook      'user/disable-tabs)
-
+(add-hook 'lua-mode-hook        'user/on-lua-mode)
 
 ;;
 ;; Actual configuration
 ;;
 
-(user/set-font (assoc "Consolas ligaturized v2" user/available-fonts))
+(user/set-font (assoc "Ubuntu Mono Ligaturized" user/available-fonts))
 (user/set-theme 'gruvbox)
 (user/set-emacs-keybindings)
 (setq-default global-flycheck-mode nil)
@@ -614,8 +623,8 @@
 (user/show-whitespaces)
 
 (find-file "~/dev/todo.org")
-(calendar)
-(other-window 1)
+;(calendar)
+;(other-window 1)
 
 ;;; newinit.el ends here
 (custom-set-variables
