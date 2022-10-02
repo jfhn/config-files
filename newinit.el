@@ -139,11 +139,11 @@
 (use-package company)
 
 ;; Modeline configurations
-(setq-default doom-modeline-height 10)
+;(setq-default doom-modeline-height 10)
 ;(setq doom-modeline-icon nil)
-(setq-default doom-modeline-indent-info t)
+;(setq-default doom-modeline-indent-info t)
 
-(setq-default doom-modeline-height 20)
+;(setq-default doom-modeline-height 20)
 
 (use-package dash)
 
@@ -474,7 +474,7 @@
                                ("Lucida Console"          . (140 normal))
                                ("Fira Code"               . (120 medium))
                                ("Ubuntu Mono"             . (160 medium))
-                               ("Ubuntu Mono Ligaturized" . (160 medium))))
+                               ("Ubuntu Mono Ligaturized" . (150 medium))))
 
 (defun user/change-font (font)
   (interactive
@@ -484,8 +484,8 @@
 (defun user/set-font (font-data)
   (set-face-attribute 'fixed-pitch nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
   (set-face-attribute 'default nil :font (nth 0 font-data) :height (nth 1 font-data) :weight (nth 2 font-data))
-  (set-face-attribute 'mode-line nil :family (car font-data) :height 120)
-  (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 120))
+  (set-face-attribute 'mode-line nil :family (car font-data) :height 1)
+  (set-face-attribute 'mode-line-inactive nil :family (car font-data) :height 1))
 
 (defun user/change-background-opacity (alpha)
   (interactive "nOpacity: ")
