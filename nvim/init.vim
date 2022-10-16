@@ -3,7 +3,9 @@
 source <sfile>:h/plugins.vim
 source <sfile>:h/settings.vim
 
+lua require("util");
 lua require("ui");
+lua require("_cmp");
 lua require("lsp");
 
 source <sfile>:h/mappings.vim

@@ -1,5 +1,16 @@
-local cmp     = require("cmp");
-local luasnip = require("luasnip");
+local util = require("util");
+
+local ok, cmp = pcall(require, "cmp");
+if not ok then
+	util.notify("require failed", "loading `cmp` failed.", vim.log.levels.WARN);
+	return;
+end
+
+local ok, luasnip = pcall(require, "luasnip");
+if not ok then
+	util.notify("require failed", "loading `luasnip` failed.", vim.log.levels.WARN);
+	return;
+end
 
 cmp.setup {
 	snippet = {
@@ -21,21 +32,14 @@ cmp.setup {
 		fields = {"abbr", "menu"},
 	},
 
-	sources = {
-		cmp.config.sources({
-			{name = "nvim_lsp"},
-			{name = "luasnip"}
-		}, {
-			{name = "buffer"}
-		})
-	},
+	sources = cmp.config.sources({
+		{name = "nvim_lsp"},
+		{name = "luasnip"}
+	}, {
+		{name = "buffer"}
+	}),
 
 	experimental = {
 		ghost_text = true
 	}
 };
-
-local debug = require("_debug");
-debug.print(cmp.setup);
-
-print("module loaded: lsp");
