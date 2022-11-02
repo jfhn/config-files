@@ -1,7 +1,8 @@
 let mapleader = " "
 
 :map  <C-TAB>   <C-N>
-:map  <C-G>     <ESC>
+:map  <C-g>     <ESC>
+:map  <C-c>     <ESC>
 
 :nmap <C-h>     b
 :nmap <C-l>     w

@@ -1,12 +1,22 @@
-" This does not work in any release version yet, the feature was added on 07.10.2022.
+" This feature only works when neovide is build from source.
 let g:neovide_scale_factor = 1.0
+let g:neovide_scale_increment_factor = 1.2
 
 fun! ChangeScaleFactor(delta)
-	let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
+	if a:delta == 1
+		let g:neovide_scale_factor = 1.0
+	else
+		let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
+	end
+	echom "Scale factor: " . string(g:neovide_scale_factor)
 endfun
 
-"nnoremap <expr><leader>= ChangeScaleFactor(1.2)
-"nnoremap <expr><leader>_ ChangeScaleFactor(1/1.2)
+nmap <expr><leader>= ChangeScaleFactor(g:neovide_scale_increment_factor)
+nmap <expr><leader>- ChangeScaleFactor(1/g:neovide_scale_increment_factor)
+nmap <expr><leader>0 ChangeScaleFactor(1)
+
+"nmap <C-kPlus> ChangeScaleFactor(1.2)
+"nmap <C-kMinus> ChangeScaleFactor(1/1.2)
 
 " g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
 let g:neovide_transparency = 0.9

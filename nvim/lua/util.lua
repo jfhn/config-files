@@ -11,4 +11,12 @@ M.notify = function(title, msg, level)
     });
 end
 
+M.table_keys = function(tab)
+	local result = {};
+	for k in pairs(tab) do
+		result[#result + 1] = k;
+	end
+	return result;
+end
+
 return M;

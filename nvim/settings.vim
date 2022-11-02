@@ -32,7 +32,10 @@ set fileencoding=utf-8
 set whichwrap+=<,>,h,l,[,]
 
 set background=dark
-colo accent
+colo gruber
+"colo ayu-mirage
+"highlight LineNr guifg=#FFE6B3
+"highlight LineNr guifg=#FFCC66
 
 set completeopt=menu,menuone,noselect
 
