@@ -1,3 +1,5 @@
+let g:neovide_cursor_trail_size = 0
+
 " This feature only works when neovide is build from source.
 let g:neovide_scale_factor = 1.0
 let g:neovide_scale_increment_factor = 1.2

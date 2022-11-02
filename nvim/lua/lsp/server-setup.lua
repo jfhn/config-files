@@ -50,5 +50,9 @@ LSP_Servers = {
 
 	pyright = {
 
-	}
+	},
+
+	tsserver = {
+
+	},
 };
