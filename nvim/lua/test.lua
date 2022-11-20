@@ -10,3 +10,5 @@ mydbg.print(t);
 mydbg.print(t, true);
 mydbg.print(t, false);
 mydbg.print(function() end);
+
+mydbg.print(vim.cmd("colo"))
