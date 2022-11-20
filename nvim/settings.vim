@@ -34,6 +34,9 @@ set whichwrap+=<,>,h,l,[,]
 
 set background=dark
 colo gruber
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight SignColumn ctermbg=none
 "colo ayu-mirage
 "highlight LineNr guifg=#FFE6B3
 "highlight LineNr guifg=#FFCC66
