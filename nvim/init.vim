@@ -3,11 +3,11 @@
 source <sfile>:h/plugins.vim
 source <sfile>:h/settings.vim
 
-lua require("util");
 lua require("ui");
 lua require("editor");
 lua require("_cmp");
 lua require("lsp");
+lua require("telescope-config")
 
 source <sfile>:h/mappings.vim
 source <sfile>:h/hooks.vim
