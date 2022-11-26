@@ -55,4 +55,8 @@ LSP_Servers = {
 	tsserver = {
 
 	},
+
+	rust_analyzer = {
+
+	},
 };
