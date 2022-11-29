@@ -46,3 +46,5 @@ set completeopt=menu,menuone,noselect
 
 let c_no_curly_error=1
 let g:stylus_terminal_italics=1
+
+autocmd! BufNewFile,BufReadPre,FileReadPre *.* set noexpandtab
