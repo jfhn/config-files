@@ -26,6 +26,7 @@ set scrolloff=8
 set nohlsearch
 set signcolumn=yes
 set ff=unix
+set clipboard=unnamed
 
 set encoding=utf-8
 set fileencoding=utf-8
