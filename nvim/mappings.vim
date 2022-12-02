@@ -20,6 +20,7 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<cr>
 
 "map <leader>= <cmd>lua ui_increase_fontsize()<cr>
 "map <leader>- <cmd>lua ui_decrease_fontsize()<cr>
