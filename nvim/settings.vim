@@ -33,8 +33,9 @@ set fileencoding=utf-8
 
 set whichwrap+=<,>,h,l,[,]
 
+set termguicolors
 set background=dark
-colo gruber
+colo melange
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight SignColumn ctermbg=none
