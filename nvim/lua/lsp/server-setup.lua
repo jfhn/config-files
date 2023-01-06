@@ -59,4 +59,14 @@ LSP_Servers = {
 	rust_analyzer = {
 
 	},
+
+	dartls = {
+
+	},
+
+	clangd = {
+
+	}
 };
+
+require("flutter-tools").setup{};

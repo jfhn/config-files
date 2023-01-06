@@ -16,6 +16,8 @@ if exists("g:neovide")
 	source <sfile>:h/neovide.vim
 endif
 
+lua BGTransparency(0);
+
 fun! HighlightNotes()
 	syn match myNotes /\%(NOTE:\)/
 	hi link myNotes Note
