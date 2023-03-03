@@ -31,41 +31,41 @@ LSP_Servers = {
 		on_attach = on_attach,
 		settings = {
 			Lua = {
+				runtime = {
+					version = "LuaJIT",
+				},
 				diagnostics = {
-					globals = {"vim"},
+					globals = {"vim"}
 				},
 				workspace = {
 					library = {
 						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+						[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
 						[vim.fn.stdpath("config") .. "/lua"] = true,
-					},
-				},
-			},
-		},
+					}
+				}
+			}
+		}
 	},
 
 	vimls = {
-
+		on_attach = on_attach
 	},
 
 	pyright = {
-
+		on_attach = on_attach
 	},
 
 	tsserver = {
-
+		on_attach = on_attach
 	},
 
 	rust_analyzer = {
-
-	},
-
-	dartls = {
-
+		on_attach = on_attach
 	},
 
 	clangd = {
-
+		on_attach = on_attach
 	}
 };
 

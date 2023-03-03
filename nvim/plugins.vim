@@ -1,5 +1,5 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
-
+;
 Plug 'morhetz/gruvbox'
 "Plug 'jremmen/vim-ripgrep'
 Plug 'vim-utils/vim-man'
@@ -30,6 +30,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'lervag/vimtex'
+Plug 'endel/vim-github-colorscheme'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
