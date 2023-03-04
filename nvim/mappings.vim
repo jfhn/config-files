@@ -1,18 +1,9 @@
 let mapleader = " "
 
-:map  <C-TAB>   <C-N>
-:map  <C-g>     <ESC>
-:map  <C-c>     <ESC>
+map <C-k> {
+map <C-j> }
 
-:nmap <C-h>     b
-:nmap <C-l>     w
-:nmap <C-k>     {
-:nmap <C-j>     }
-
-:vmap <C-h>     b
-:vmap <C-l>     w
-:vmap <C-k>     {
-:vmap <C-j>     }
+nnoremap <C-x>g <cmd>LazyGit<cr>
 
 " TODO: Do this in a seperate lua file.
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({search = vim.fn.input("Grep for > ")})<cr>

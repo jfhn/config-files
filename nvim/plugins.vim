@@ -31,6 +31,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'lervag/vimtex'
 Plug 'endel/vim-github-colorscheme'
+Plug 'kdheepak/lazygit.nvim'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
