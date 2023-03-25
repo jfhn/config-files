@@ -3,8 +3,9 @@ local wt = require("wezterm");
 return {
 	-- Appearance
 	-- weight="Bold",
-	-- font = wt.font("Iosevka Term SS02"),
-	font = wt.font("Liberation Mono"),
+	font = wt.font("Iosevka Term SS02"),
+	-- font = wt.font("Ubuntu Mono Ligaturized"),
+	-- font = wt.font("Liberation Mono"),
 	font_size = 11,
 	color_scheme = "Gruvbox Dark",
 	window_background_opacity = 0.9,
