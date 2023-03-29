@@ -34,14 +34,15 @@ set fileencoding=utf-8
 set whichwrap+=<,>,h,l,[,]
 
 set termguicolors
-set background=dark
-colo melange
+colo gruber
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight SignColumn ctermbg=none
+highlight Keyword cterm=bold
 "colo ayu-mirage
 "highlight LineNr guifg=#FFE6B3
 "highlight LineNr guifg=#FFCC66
+set background=dark
 
 set completeopt=menu,menuone,noselect
 
