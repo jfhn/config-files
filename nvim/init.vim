@@ -9,6 +9,7 @@ lua require("_cmp");
 lua require("lsp");
 lua require("telescope-config");
 lua require("git-config");
+lua require("_nvim-tree");
 
 source <sfile>:h/mappings.vim
 source <sfile>:h/hooks.vim

@@ -35,6 +35,8 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'ntk148v/komau.vim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
