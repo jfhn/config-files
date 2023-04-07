@@ -1,5 +1,5 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
-;
+
 Plug 'morhetz/gruvbox'
 "Plug 'jremmen/vim-ripgrep'
 Plug 'vim-utils/vim-man'
@@ -34,10 +34,12 @@ Plug 'endel/vim-github-colorscheme'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'ntk148v/komau.vim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'TimUntersberger/neogit'
+Plug 'tpope/vim-fugitive'
+
+" Neogit
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'TimUntersberger/neogit'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
