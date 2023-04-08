@@ -469,7 +469,7 @@
                                ("Consolas ligaturized v2" . (140 medium))
                                ("Cascadia Code"           . (140 medium))
                                ("Source Code Pro"         . (140 bold))
-                               ("Iosevka SS06"            . (150 medium))
+                               ("Iosevka Term SS02"       . (150 medium))
                                ("Courier New"             . (150 bold))
                                ("Lucida Console"          . (140 normal))
                                ("Fira Code"               . (120 medium))
@@ -613,8 +613,8 @@
 ;; Actual configuration
 ;;
 
-(user/set-font (assoc "Ubuntu Mono Ligaturized" user/available-fonts))
-(user/set-theme 'gruvbox)
+(user/set-font (assoc "Iosevka Term SS02" user/available-fonts))
+(user/set-theme 'gruber-darker)
 (user/set-emacs-keybindings)
 (setq-default global-flycheck-mode nil)
 (setq-default global-company-mode t)
