@@ -16,4 +16,4 @@ require("_cmp");
 require("lsp");
 require("telescope-config");
 require("git-config");
-require("_nvim-tree");
+require("nvim-tree-config");

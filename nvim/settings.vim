@@ -14,8 +14,7 @@ set noet ci pi sts=0 sw=4 ts=4
 set ai
 set noerrorbells
 set smartindent
-set wrap
-set linebreak
+set wrap tw
 set smartcase
 set noswapfile
 set nobackup
@@ -48,6 +47,7 @@ set completeopt=menu,menuone,noselect
 
 let c_no_curly_error=1
 let g:stylus_terminal_italics=1
+" let g:nvim_tree_show_icons = {git = 0, folders = 0, files = 0, folder_arrows = 0
 
 autocmd! BufNewFile,BufReadPre,FileReadPre *.* set noexpandtab
 autocmd! BufNewFile,BufReadPre,FileReadPre *.hs set expandtab

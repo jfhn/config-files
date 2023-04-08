@@ -7,3 +7,5 @@ end
 gitsigns.setup {
 	signcolumn = true,
 };
+
+map_key("n", "<Leader>gs", ":G<cr>");
