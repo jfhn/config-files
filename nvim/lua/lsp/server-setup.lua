@@ -27,26 +27,26 @@ local on_attach = function(client, bufnr)
 end
 
 LSP_Servers = {
-	sumneko_lua = {
-		on_attach = on_attach,
-		settings = {
-			Lua = {
-				runtime = {
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					globals = {"vim"}
-				},
-				workspace = {
-					library = {
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-						[vim.fn.stdpath("config") .. "/lua"] = true,
-					}
-				}
-			}
-		}
-	},
+--	sumneko_lua = {
+--		on_attach = on_attach,
+--		settings = {
+--			Lua = {
+--				runtime = {
+--					version = "LuaJIT",
+--				},
+--				diagnostics = {
+--					globals = {"vim"}
+--				},
+--				workspace = {
+--					library = {
+--						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+--						[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+--						[vim.fn.stdpath("config") .. "/lua"] = true,
+--					}
+--				}
+--			}
+--		}
+--	},
 
 	vimls = {
 		on_attach = on_attach
@@ -68,5 +68,3 @@ LSP_Servers = {
 		on_attach = on_attach
 	}
 };
-
-require("flutter-tools").setup{};

@@ -165,6 +165,11 @@
 (use-package haskell-mode)
 (setq-default haskell-indentation-left-offset 4)
 
+;; Agda
+;; (use-package agda-mode)
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
 ;; Go
 (use-package go-mode)
 
@@ -325,7 +330,7 @@
 
 ; (global-whitespace-mode 1)
 
-(load-file "~/dev/stuff/ligature.el/ligature.el")
+; (load-file "~/dev/stuff/ligature.el/ligature.el")
 (use-package ligature
   :load-path "~/dev/stuff/ligature.el"
   :config

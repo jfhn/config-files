@@ -8,3 +8,10 @@ noremap! <C-BS> <C-w>
 noremap! <C-h>  <C-w>
 inoremap <C-w> <C-\><C-o>dB
 inoremap <C-BS> <C-\><C-o>db
+
+nnoremap <Leader>ft <cmd>NvimTreeToggle<cr>
+nnoremap <C-p> <cmd>Telescope git_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
