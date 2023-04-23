@@ -36,6 +36,7 @@ Plug 'ntk148v/komau.vim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
+Plug 'folke/which-key.nvim'
 
 " Neogit
 " Plug 'nvim-lua/plenary.nvim'
