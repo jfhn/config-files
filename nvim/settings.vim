@@ -33,7 +33,7 @@ set fileencoding=utf-8
 set whichwrap+=<,>,h,l,[,]
 
 set termguicolors
-colo gruber
+colo gruber-darker
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight SignColumn ctermbg=none
