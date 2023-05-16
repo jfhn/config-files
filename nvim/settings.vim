@@ -1,4 +1,5 @@
 syntax on
+language en_US
 
 "Makes the cursor purple, somehow
 "set guicursor=n-v-c:block-Cursor
