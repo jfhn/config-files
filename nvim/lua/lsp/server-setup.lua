@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
 end
 
 LSP_Servers = {
-	sumneko_lua = {
+	lua_ls = {
 		on_attach = on_attach,
 		settings = {
 			Lua = {

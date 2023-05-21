@@ -38,6 +38,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'folke/which-key.nvim'
+Plug 'ErichDonGubler/lsp_lines.nvim'
 
 " Neogit
 " Plug 'TimUntersberger/neogit'
