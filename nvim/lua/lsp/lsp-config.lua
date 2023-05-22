@@ -26,5 +26,3 @@ end
 lsp_lines.setup()
 lsp_lines.toggle()
 vim.keymap.set("n", "<C-l>", toggle_lsp_message_multiline, {desc = "Toggle lsp_lines"})
-
-print("Lsp configured")
