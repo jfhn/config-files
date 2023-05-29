@@ -39,6 +39,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 Plug 'folke/which-key.nvim'
 Plug 'ErichDonGubler/lsp_lines.nvim'
+Plug 'ziglang/zig.vim'
 
 " Neogit
 " Plug 'TimUntersberger/neogit'
