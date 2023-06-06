@@ -19,7 +19,7 @@ def create_left_prompt [] {
 
     let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
+    let path_segment = $"($path_color)($dir)\n\n"
 
     $path_segment | str replace --all --string (char path_sep) $"($separator_color)/($path_color)"
 }
@@ -49,9 +49,9 @@ let-env PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-let-env PROMPT_INDICATOR = {|| "> " }
-let-env PROMPT_INDICATOR_VI_INSERT = {|| "> " }
-let-env PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
+let-env PROMPT_INDICATOR = {|| "λ " }
+let-env PROMPT_INDICATOR_VI_INSERT = {|| "$ " }
+let-env PROMPT_INDICATOR_VI_NORMAL = {|| "$ " }
 let-env PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
 # Specifies how environment variables are:
