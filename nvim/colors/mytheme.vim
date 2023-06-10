@@ -76,7 +76,7 @@ else
   let s:cyan            = s:dark_cyan
   let s:green           = s:dark_green
   let s:red             = s:dark_red
-  let s:visual          = s:dark_purple
+  let s:visual          = s:light_purple
   let s:yellow          = s:dark_yellow
 endif
 
@@ -150,8 +150,8 @@ call s:h("SpecialKey",    {"fg": s:light_green})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:dark_blue})
 call s:h("ErrorMsg",      {"fg": s:red})
-call s:h("IncSearch",     {"bg": s:light_purple, "fg": s:light_yellow})
-call s:h("Search",        {"bg": s:light_purple, "fg": s:light_yellow})
+call s:h("IncSearch",     {"bg": s:blue, "fg": s:black})
+call s:h("Search",        {"bg": s:blue, "fg": s:black})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
