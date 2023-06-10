@@ -112,6 +112,7 @@ hi! link Float            Constant
 call s:h("String",        {"fg": s:dark_green, "cterm": "bold", "gui": "bold"})
 
 call s:h("Function",      {"cterm": "italic", "gui": "italic"})
+hi! link LuaFunc          Function
 
 call s:h("Statement",     {"fg": s:dark_red, "cterm": "bold", "gui": "bold"})
 hi! link Conditonal       Statement
@@ -120,6 +121,7 @@ hi! link Label            Statement
 hi! link Keyword          Statement
 hi! link Exception        Statement
 hi! link StorageClass     Statement
+hi! link LuaFunction      Statement
 
 call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
 
@@ -198,12 +200,12 @@ call s:h("ColorColumn",   {"bg": s:bg_subtle})
 call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
-call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH2",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH4",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm})
+hi! link htmlH1 Statement
+hi! link htmlH2 String
+hi! link htmlH3 Statement
+hi! link htmlH4 String
+hi! link htmlH5 Statement
+hi! link htmlH6 String
 
 " Synatastic
 call s:h("SyntasticWarningSign",    {"fg": s:yellow})
@@ -212,12 +214,12 @@ call s:h("SyntasticErrorSign",      {"fg": s:red})
 call s:h("SyntasticError",          {"bg": s:red, "fg": s:white, "gui": "bold", "cterm": "bold"})
 
 " Neomake
-hi link NeomakeWarningSign	SyntasticWarningSign
-hi link NeomakeErrorSign	SyntasticErrorSign
+hi link NeomakeWarningSign          SyntasticWarningSign
+hi link NeomakeErrorSign            SyntasticErrorSign
 
 " ALE
-hi link ALEWarningSign	SyntasticWarningSign
-hi link ALEErrorSign	SyntasticErrorSign
+hi link ALEWarningSign              SyntasticWarningSign
+hi link ALEErrorSign                SyntasticErrorSign
 
 " Signify, git-gutter
 hi link SignifySignAdd              LineNr
