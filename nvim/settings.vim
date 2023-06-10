@@ -33,7 +33,8 @@ set fileencoding=utf-8
 set whichwrap+=<,>,h,l,[,]
 
 set termguicolors
-colo gruber-darker
+set background=light
+colo mytheme
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight SignColumn ctermbg=none
@@ -41,7 +42,6 @@ highlight Keyword cterm=bold
 "colo ayu-mirage
 "highlight LineNr guifg=#FFE6B3
 "highlight LineNr guifg=#FFCC66
-set background=dark
 
 set completeopt=menu,menuone,noselect
 
