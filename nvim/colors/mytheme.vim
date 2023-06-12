@@ -125,7 +125,7 @@ hi! link LuaFunction      Statement
 
 call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
 
-call s:h("PreProc",     {"fg": s:black})
+call s:h("PreProc",       {"fg": s:black})
 hi! link Include          PreProc
 hi! link Define           PreProc
 hi! link Macro            PreProc
@@ -142,6 +142,8 @@ hi! link Delimiter        Special
 hi! link SpecialComment   Special
 hi! link Debug            Special
 
+call s:h("Whitespace",    {"fg": s:light_gray})
+
 call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
 call s:h("Ignore",        {"fg": s:bg})
 call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
@@ -155,7 +157,7 @@ call s:h("Search",        {"bg": s:blue, "fg": s:black})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
-call s:h("CursorLineNr",  {"fg": s:purple, "bg": s:bg_very_subtle})
+call s:h("CursorLineNr",  {"fg": s:dark_red, "bg": s:bg_very_subtle})
 call s:h("Question",      {"fg": s:red})
 call s:h("StatusLine",    {"bg": s:norm, "fg": s:actual_white})
 call s:h("StatusLineNC",  {"bg": s:norm, "fg": s:white})
