@@ -122,6 +122,7 @@ hi! link Keyword          Statement
 hi! link Exception        Statement
 hi! link StorageClass     Statement
 hi! link LuaFunction      Statement
+hi! link rustKeyword      Statement
 
 call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
 
