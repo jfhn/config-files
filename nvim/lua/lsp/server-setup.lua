@@ -17,6 +17,7 @@ end
 
 local function lsp_list_diagnostics_buffer()
 	lsp_list_diagnostics("buffer");
+	-- vim.diagnostic.show("buffer");
 end
 
 local function lsp_list_workspace_folders()
@@ -88,7 +89,15 @@ LSP_Servers = {
 	},
 
 	rust_analyzer = {
-		on_attach = on_attach
+		on_attach = on_attach,
+		cmd = {"rustup", "run", "stable", "rust-analyzer"},
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					command = {"cargo", "clippy"},
+				},
+			},
+		},
 	},
 
 	clangd = {
