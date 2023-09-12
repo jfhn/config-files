@@ -39,17 +39,18 @@ let s:dark_red        = { "gui": "#a00000", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
 let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
-let s:dark_blue       = { "gui": "#008EC4", "cterm": "32"   }
+let s:dark_blue       = { "gui": "#008EC4", "cterm": "32"  }
 let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
 let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
 let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
 let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
 let s:dark_green      = { "gui": "#00a000", "cterm": "2"   }
 let s:light_green     = { "gui": "#5FD7A7", "cterm": "10"  }
+let s:chartreuse1     = { "gui": "#87FF00", "cterm": "83"  }
 let s:dark_purple     = { "gui": "#af5fd7", "cterm": "134" }
-let s:light_purple    = { "gui": "#a790d5", "cterm": "140" }
-let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
-let s:light_yellow    = { "gui": "#ffff87", "cterm": "228"   }
+let s:light_purple    = { "gui": "#AF87FF", "cterm": "141" }
+let s:yellow          = { "gui": "#FFFF00", "cterm": "11"  }
+let s:light_yellow    = { "gui": "#ffff87", "cterm": "228" }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 
 let s:background = &background
@@ -58,14 +59,18 @@ if &background == "dark"
   let s:bg              = s:black
   let s:bg_subtle       = s:lighter_black
   let s:bg_very_subtle  = s:subtle_black
-  let s:norm            = s:lighter_gray
+  let s:norm            = s:white
   let s:norm_subtle     = s:medium_gray
   let s:purple          = s:light_purple
   let s:cyan            = s:light_cyan
-  let s:green           = s:light_green
+  let s:green           = s:chartreuse1
   let s:red             = s:light_red
+  let s:keyword         = s:yellow
   let s:visual          = s:light_purple
   let s:yellow          = s:light_yellow
+  let s:strong          = s:white
+  let s:status_current  = s:black
+  let s:status_other    = s:lighter_black
 else
   let s:bg              = s:actual_white
   let s:bg_subtle       = s:light_gray
@@ -76,8 +81,12 @@ else
   let s:cyan            = s:dark_cyan
   let s:green           = s:dark_green
   let s:red             = s:dark_red
+  let s:keyword         = s:dark_red
   let s:visual          = s:light_purple
   let s:yellow          = s:dark_yellow
+  let s:strong          = s:black
+  let s:status_current  = s:actual_white
+  let s:status_other    = s:white
 endif
 
 " https://github.com/noahfrederick/vim-hemisu/
@@ -100,8 +109,8 @@ if &background != s:background
    execute "set background=" . s:background
 endif
 
-call s:h("Cursor",        {"bg": s:dark_purple, "fg": s:norm, "gui": "reverse", "cterm": "reverse"})
-call s:h("Comment",       {"fg": s:dark_blue, "gui": "italic"})
+call s:h("Cursor",        {"bg": s:purple, "fg": s:norm, "gui": "reverse", "cterm": "reverse"})
+call s:h("Comment",       {"fg": s:cyan, "gui": "italic"})
 
 call s:h("Constant",      {"fg": s:purple})
 hi! link Character        Constant
@@ -109,12 +118,12 @@ hi! link Number           Constant
 hi! link Boolean          Constant
 hi! link Float            Constant
 
-call s:h("String",        {"fg": s:dark_green, "cterm": "bold", "gui": "bold"})
+call s:h("String",        {"fg": s:green, "cterm": "bold", "gui": "bold"})
 
 call s:h("Function",      {"cterm": "italic", "gui": "italic"})
 hi! link LuaFunc          Function
 
-call s:h("Statement",     {"fg": s:dark_red, "cterm": "bold", "gui": "bold"})
+call s:h("Statement",     {"fg": s:keyword, "cterm": "bold", "gui": "bold"})
 hi! link Conditonal       Statement
 hi! link Repeat           Statement
 hi! link Label            Statement
@@ -126,7 +135,7 @@ hi! link rustKeyword      Statement
 
 call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
 
-call s:h("PreProc",       {"fg": s:black})
+call s:h("PreProc",       {"fg": s:strong})
 hi! link Include          PreProc
 hi! link Define           PreProc
 hi! link Macro            PreProc
@@ -149,9 +158,9 @@ call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline
 call s:h("Ignore",        {"fg": s:bg})
 call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
 call s:h("Todo",          {"fg": s:purple, "cterm": "bold", "gui": "bold"})
-call s:h("SpecialKey",    {"fg": s:light_green})
+call s:h("SpecialKey",    {"fg": s:green})
 call s:h("NonText",       {"fg": s:medium_gray})
-call s:h("Directory",     {"fg": s:dark_blue})
+call s:h("Directory",     {"fg": s:blue})
 call s:h("ErrorMsg",      {"fg": s:red})
 call s:h("IncSearch",     {"bg": s:blue, "fg": s:black})
 call s:h("Search",        {"bg": s:blue, "fg": s:black})
@@ -160,10 +169,10 @@ hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
 call s:h("CursorLineNr",  {"fg": s:dark_red, "bg": s:bg_very_subtle})
 call s:h("Question",      {"fg": s:red})
-call s:h("StatusLine",    {"bg": s:norm, "fg": s:actual_white})
-call s:h("StatusLineNC",  {"bg": s:norm, "fg": s:white})
+call s:h("StatusLine",    {"bg": s:norm, "fg": s:status_current})
+call s:h("StatusLineNC",  {"bg": s:norm, "fg": s:status_other})
 call s:h("VertSplit",     {"fg": s:black})
-call s:h("Title",         {"fg": s:dark_blue})
+call s:h("Title",         {"fg": s:blue})
 call s:h("Visual",        {"fg": s:norm, "bg": s:visual})
 call s:h("VisualNOS",     {"bg": s:bg_subtle})
 call s:h("WarningMsg",    {"fg": s:yellow})

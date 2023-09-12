@@ -6,6 +6,7 @@ if not ok then
 	return
 end
 
+require("lsp.trouble-setup");
 require("lsp.server-setup");
 require("lsp.lsp-installer");
 require("lsp.lsp-config");

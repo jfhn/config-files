@@ -17,3 +17,5 @@ require("lsp");
 require("telescope-config");
 require("git-config");
 require("nvim-tree-config");
+require("vimtex-config");
+require("on-save-runner");

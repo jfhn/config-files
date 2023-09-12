@@ -15,7 +15,7 @@ Plug '~/dev/VimDarkColo'
 Plug 'git@github.com:nickburlett/vim-colors-stylus.git'
 Plug 'udalov/kotlin-vim'
 Plug 'jhlgns/naysayer88.vim'
-Plug 'phha/zenburn.nvim'
+Plug 'jnurmine/Zenburn'
 Plug 'git@github.com:veloce/vim-aldmeris'
 Plug 'git@github.com:d11wtq/subatomic256.vim.git'
 Plug 'git@github.com:JuliaEditorSupport/julia-vim'
@@ -41,6 +41,9 @@ Plug 'folke/which-key.nvim'
 Plug 'ErichDonGubler/lsp_lines.nvim'
 Plug 'ziglang/zig.vim'
 
+Plug 'folke/lsp-trouble.nvim'
+Plug 'ribru17/bamboo.nvim'
+
 " Neogit
 " Plug 'TimUntersberger/neogit'
 
@@ -55,5 +58,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+
+Plug 'scalameta/nvim-metals'
 
 call plug#end()

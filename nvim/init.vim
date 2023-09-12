@@ -12,7 +12,7 @@ if exists("g:neovide")
 	source <sfile>:h/neovide.vim
 endif
 
-TBT " Toggle background transparency
+"TBT " Toggle background transparency
 
 fun! HighlightNotes()
 	syn match myNotes /\%(NOTE:\)/
