@@ -1,6 +1,7 @@
 syntax on
 language en_US
 
+set guicursor=
 set exrc
 set hidden
 set number relativenumber
