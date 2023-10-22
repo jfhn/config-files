@@ -119,19 +119,25 @@ hi! link Boolean          Constant
 hi! link Float            Constant
 
 call s:h("String",        {"fg": s:green, "cterm": "bold", "gui": "bold"})
+hi! link hsPragma         String
 
 call s:h("Function",      {"cterm": "italic", "gui": "italic"})
 hi! link LuaFunc          Function
 
-call s:h("Statement",     {"fg": s:keyword, "cterm": "bold", "gui": "bold"})
-hi! link Conditonal       Statement
-hi! link Repeat           Statement
-hi! link Label            Statement
-hi! link Keyword          Statement
-hi! link Exception        Statement
-hi! link StorageClass     Statement
-hi! link LuaFunction      Statement
-hi! link rustKeyword      Statement
+call s:h("Statement",         {"fg": s:keyword, "cterm": "bold", "gui": "bold"})
+hi! link Conditonal           Statement
+hi! link Repeat               Statement
+hi! link Label                Statement
+hi! link Keyword              Statement
+hi! link Exception            Statement
+hi! link StorageClass         Statement
+hi! link LuaFunction          Statement
+hi! link rustKeyword          Statement
+hi! link hsTypedef            Statement
+hi! link hsStructure          Statement
+hi! link hsNewtypedef         hsTypedef
+hi! link scalaKeywordModifier Statement
+hi! link scalaSpecial         Statement
 
 call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
 
