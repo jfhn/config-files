@@ -13,7 +13,7 @@ syn region NinjaChar start="'" end="'"
 syn region NinjaString start='"' end='"'
 
 " Keywords
-syn keyword NinjaKeyword break case const continue default do else for if lambda new nil record return sizeof switch type var while
+syn keyword NinjaKeyword break case const continue default do else for if lambda new nil record return sizeof switch type var while module import public is
 
 " Other
 syn match NinjaFunction '[a-zA-Z0-9_]\+('he=e-1
