@@ -8,12 +8,12 @@ syn match NinjaType '[a-zA-Z0-9_]: \+\[\?\]\?[a-zA-Z0-9_]\+'hs=s+3
 " syn match NinjaTypeDef 'type \+[a-zA-Z0-9_]\+'hs=s+5
 
 " Values
-syn match  NinjaNumber '\d\+'
+syn match  NinjaNumber '\d\+|true|false'
 syn region NinjaChar start="'" end="'"
 syn region NinjaString start='"' end='"'
 
 " Keywords
-syn keyword NinjaKeyword break case const continue default do else for if lambda new nil record return sizeof switch type var while module import public is
+syn keyword NinjaKeyword break case const continue default do else for if lambda new nil record return sizeof switch type var while module import public is initialize
 
 " Other
 syn match NinjaFunction '[a-zA-Z0-9_]\+('he=e-1
@@ -28,5 +28,5 @@ hi def link NinjaNumber      Number
 hi def link NinjaChar        Number
 hi def link NinjaString      String
 hi def link NinjaFunction    Function
-hi def link NinjaKeyword     Statement
+hi def link NinjaKeyword     Keyword
 hi def link NinjaLineComment Comment
