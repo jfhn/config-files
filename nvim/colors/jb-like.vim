@@ -8,12 +8,13 @@ let g:colors_name='jb-like'
 
 set background=dark
 
-let s:bg             = { "gui": "#072626", "cterm": "1" }
+let s:bg             = { "gui": "#072626", "cterm": "1"   }
 let s:norm           = { "gui": "#D3B58D", "cterm": "15"  }
 let s:ident          = { "gui": "#C8D4EC", "cterm": "15"  }
 let s:comment        = { "gui": "#3FDF1F", "cterm": "15"  }
 let s:white          = { "gui": "#FFFFFF", "cterm": "231" }
 let s:string         = { "gui": "#0FDFAF", "cterm": "231" }
+let s:type           = { "gui": "#7FFFD4", "cterm": "231" }
 
 function! s:h(group, style)
   execute "highlight" a:group
@@ -41,7 +42,6 @@ hi! link Conditonal           Statement
 hi! link Repeat               Statement
 hi! link Label                Statement
 hi! link Keyword              Statement
-hi! link cType                Statement
 hi! link cTypedef             Statement
 hi! link cStructure           Statement
 hi! link Exception            Statement
@@ -53,6 +53,11 @@ hi! link hsStructure          Statement
 hi! link hsNewtypedef         hsTypedef
 hi! link scalaKeywordModifier Statement
 hi! link scalaSpecial         Statement
+
+call s:h("Type",              {"fg": s:norm})
+hi! link Typedef              Type
+hi! link Structure            Type
+hi! link cType                Type
 
 call s:h("String",            {"fg": s:string})
 hi! link Character            String

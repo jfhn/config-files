@@ -39,4 +39,4 @@ trouble.setup {
 	},
 };
 
-print("Lsp trouble initialized.");
+-- print("Lsp trouble initialized.");
