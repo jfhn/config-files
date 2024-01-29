@@ -10,8 +10,13 @@ syn match  NooNumber '\d\+'
 syn region NooChar start="'" end="'"
 syn region NooString start='"' end='"'
 
+syn match NooFunction "\(\w\+\.\)*\zs\w\+\ze\( \+(\?\w\+)\?\)\+"
+
+" syn match NooPatternVar "\(\w\+\.\)*\w\+\|(\(\w\+\.\)*\zs\w\+\ze\( \+(\?\w\+)\?\)\+)" contained
+
 " Keywords
-syn keyword NooKeyword define axiom family where case
+syn keyword NooKeyword define axiom family where public import private module
+syn keyword NooKeywordCase case nextgroup=NooPatternVar skipwhite
 
 " Other
 syn region NooLineComment start="\/\/" end="\n"
@@ -23,4 +28,6 @@ hi def link NooNumber      Number
 hi def link NooChar        Number
 hi def link NooString      String
 hi def link NooKeyword     Statement
+hi def link NooKeywordCase Statement
+hi def link NooFunction    Function
 hi def link NooLineComment Comment

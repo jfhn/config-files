@@ -44,6 +44,8 @@ Plug 'vim-scripts/obsidian2.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'rktjmp/lush.nvim'
 Plug 'mcchrish/zenbones.nvim'
+Plug 'justinmk/vim-sneak'
+Plug 'sainnhe/sonokai'
 
 Plug 'folke/lsp-trouble.nvim'
 Plug 'ribru17/bamboo.nvim'

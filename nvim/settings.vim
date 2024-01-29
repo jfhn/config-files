@@ -32,15 +32,3 @@ set completeopt=menu,menuone,noselect
 let c_no_curly_error=1
 let g:stylus_terminal_italics=1
 " let g:nvim_tree_show_icons = {git = 0, folders = 0, files = 0, folder_arrows = 0
-
-augroup AnyFileAutoGroup
-  autocmd BufNewFile,BufReadPre,FileReadPre * set noet
-  autocmd BufNewFile,BufReadPre,FileReadPre * set ff=unix
-augroup END
-
-augroup WhiteSpaceLanguagesGroup
-  autocmd BufNewFile,BufReadPre,FileReadPre *.hs,*.java,*.scala,*.ml set et
-augroup END
-
-autocmd! AnyFileAutoGroup
-autocmd! WhiteSpaceLanguagesGroup

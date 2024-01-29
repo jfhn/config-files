@@ -37,3 +37,10 @@ toggle_transparency = function()
 		vim.cmd("colorscheme " .. current_theme)
 	end
 end
+
+-- local function colo_fix()
+-- 	print("Colo fix")
+-- 	vim.cmd("highlight Keyword cterm=bold gui=bold")
+-- end
+
+-- vim.api.nvim_create_user_command("ColoFix", colo_fix, {nargs = 0})
