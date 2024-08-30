@@ -9,8 +9,8 @@ set_tab_width(4)
 vim.cmd("command! -nargs=? SetTabWidth :lua set_tab_width(<args>)")
 
 vim.opt.listchars = {
-	tab = "| ",
-	space = "·",
+	tab = "» ",
+	-- space = "·",
 	trail = "·"
 }
 vim.opt.list = true

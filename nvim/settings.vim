@@ -16,9 +16,10 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set scrolloff=8
-set signcolumn=yes
+set scrolloff=5
+set signcolumn=auto
 set ff=unix
+set ffs=unix
 set clipboard=unnamed
 
 set encoding=utf-8
@@ -32,3 +33,4 @@ set completeopt=menu,menuone,noselect
 let c_no_curly_error=1
 let g:stylus_terminal_italics=1
 " let g:nvim_tree_show_icons = {git = 0, folders = 0, files = 0, folder_arrows = 0
+let g:vimtex_syntax_conceal_disable = 1 " somehow makes vimtex not lag

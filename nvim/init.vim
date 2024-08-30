@@ -24,3 +24,6 @@ endfu
 
 autocmd bufenter * :call HighlightNotes()
 autocmd filetype * :call HighlightNotes()
+
+set ff=unix
+set ffs=unix

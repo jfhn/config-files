@@ -61,3 +61,5 @@ hi! link cType                Type
 
 call s:h("String",            {"fg": s:string})
 hi! link Character            String
+
+hi! Visual guibg=#000080 guifg=#ffffff
