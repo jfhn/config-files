@@ -8,6 +8,23 @@ set_tab_width(4)
 
 vim.cmd("command! -nargs=? SetTabWidth :lua set_tab_width(<args>)")
 
+---@param command table
+Make = function(command)
+	if #command.fargs > 0 then
+		local cmd = ""
+		for _, c in ipairs(command.fargs) do
+			cmd = cmd .. "\\ " .. c
+		end
+		vim.cmd("set makeprg=" .. cmd)
+	end
+	vim.cmd("make")
+end
+
+vim.api.nvim_create_user_command("Make", Make, {
+	nargs = "*",
+	desc = "Updates make program if specified and executes it",
+})
+
 vim.opt.listchars = {
 	tab = "» ",
 	-- space = "·",

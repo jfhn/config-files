@@ -2,6 +2,8 @@ if exists("b:current_syntax")
 	finish
 endif
 
+setlocal ft=ninja
+
 " Types
 " syn keyword NinjaBuiltinType Int Char Str
 " syn region NinjaTypeDef start="type" end="\(\h\w*\)\@=" contains=NinjaTypeExp

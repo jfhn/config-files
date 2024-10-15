@@ -21,6 +21,7 @@ set signcolumn=auto
 set ff=unix
 set ffs=unix
 set clipboard=unnamed
+set grepprg=rg\ --vimgrep
 
 set encoding=utf-8
 set fileencoding=utf-8

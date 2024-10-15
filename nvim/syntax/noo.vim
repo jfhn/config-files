@@ -2,6 +2,8 @@ if exists("b:current_syntax")
 	finish
 endif
 
+setlocal ft=noo
+
 " Types
 syn match NooType '[A-Z][a-zA-Z0-9_]\+'
 
@@ -15,7 +17,7 @@ syn match NooFunction "\(\w\+\.\)*\zs\w\+\ze\( \+(\?\w\+)\?\)\+"
 " syn match NooPatternVar "\(\w\+\.\)*\w\+\|(\(\w\+\.\)*\zs\w\+\ze\( \+(\?\w\+)\?\)\+)" contained
 
 " Keywords
-syn keyword NooKeyword define axiom family where public import private module
+syn keyword NooKeyword define axiom family where public import private module end
 syn keyword NooKeywordCase case nextgroup=NooPatternVar skipwhite
 
 " Other
