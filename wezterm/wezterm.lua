@@ -2,13 +2,29 @@ local wt = require("wezterm");
 
 return {
 	-- Appearance
-	-- weight="Bold",
-	font = wt.font("Iosevka Term SS02"),
+	font = wt.font("Iosevka Fixed"),
+	font_size = 16,
+	-- font = wt.font("Source Code Pro"),
+	-- font = wt.font({family = "Fira Mono"}),
 	-- font = wt.font("Ubuntu Mono Ligaturized"),
+	-- font = wt.font("Consolas ligaturized v2"),
+	-- font = wt.font("Cascadia Code"),
+	-- font = wt.font("Consolas ligaturized v2"),
 	-- font = wt.font("Liberation Mono"),
-	font_size = 11,
-	color_scheme = "Gruvbox Dark",
-	window_background_opacity = 0.9,
+	-- font = wt.font("Hasklig"),
+	-- color_scheme = "Gruvbox Dark",
+	-- color_scheme = "vimbones",
+	-- color_scheme = "Gruber (base16)",
+	-- color_scheme = "Unsifted Wheat (terminal.sexy)",
+	color_scheme = "Solarized (light) (terminal.sexy)",
+	-- color_scheme = "rose-pine",
+	-- window_background_opacity = 0.9,
+	window_padding = {
+		left = 1,
+		right = 1,
+		top = 1,
+		bottom = 1,
+	},
 
 	default_prog = {"powershell.exe", "-NoLogo"},
 
@@ -16,9 +32,17 @@ return {
 	keys = {
 		{key = "l", mods = "ALT", action="ShowLauncher"},
 		{
-			key = "w", mods = "CTRL|ALT",
-			action = wt.action {CloseCurrentTab = {confirm = true}}
+			key = "w", mods = "CTRL|SHIFT",
+			action = wt.action.CloseCurrentPane {confirm = true}
 		},
+		{
+			key = "w", mods = "CTRL|ALT",
+			action = wt.action.CloseCurrentPane {confirm = true}
+		},
+		-- {
+		-- 	key = "w", mods = "CTRL",
+		-- 	action = wt.action.SendKey {key = "Backspace", mods = "CTRL"}
+		-- },
 		{
 			key = "-", mods = "CTRL|ALT",
 			action = wt.action.SplitVertical {domain = "CurrentPaneDomain"} -- {SplitVertical = {args={"cmd"}}}
@@ -27,10 +51,6 @@ return {
 			key = "=", mods = "CTRL|ALT",
 			action = wt.action.SplitHorizontal {domain = "CurrentPaneDomain"}
 			-- action = wt.action {SplitHorizontal = {args={"cmd"}}}
-		},
-		{
-			key = "0", mods = "CTRL|ALT",
-			action = wt.action {CloseCurrentPane = {confirm = true}}
 		},
 		{
 			key = "LeftArrow", mods="CTRL|ALT",
