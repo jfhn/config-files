@@ -1,22 +1,70 @@
 local wt = require("wezterm");
 
+local fonts = {
+	{family = "Iosevka Fixed", size = 16},
+	{family = "Rec Mono Casual", size = 15},
+	{family = "Consolas", size = 15},
+	{family = "JetBrains Mono", size = 15},
+}
+
+local themes = {
+	"Gruber (base16)",
+	"rose-pine",
+	"Solarized (light) (terminal.sexy)",
+}
+
+wt.on("augment-command-palette", function(_, _)
+	local font_choices = {}
+	for index, data in ipairs(fonts) do
+		font_choices[#font_choices+1] = { label = data.family, id = tostring(index) }
+	end
+
+	local theme_choices = {}
+	for index, theme in ipairs(themes) do
+		theme_choices[#theme_choices+1] = { label = theme, id = tostring(index) }
+	end
+
+	return {
+		{
+			brief = "Change Font",
+			action = wt.action.InputSelector {
+				choices = font_choices,
+				action = wt.action_callback(function(window, pane, id, label)
+  					local overrides = window:get_config_overrides() or {}
+					local index = tonumber(id)
+					local data = fonts[index]
+					overrides.font = wt.font(data.family)
+					overrides.font_size = data.size
+					window:set_config_overrides(overrides)
+				end)
+			}
+		},
+
+		{
+			brief = "Change Theme",
+			action = wt.action.InputSelector {
+				choices = theme_choices,
+				action = wt.action_callback(function(window, pane, id, label)
+  					local overrides = window:get_config_overrides() or {}
+					local index = tonumber(id)
+					local theme = themes[index]
+					overrides.color_scheme = theme
+					window:set_config_overrides(overrides)
+				end)
+			}
+		}
+	}
+end)
+
+-- TODO: Rework with config builder.
 return {
 	-- Appearance
-	font = wt.font("Iosevka Fixed"),
-	font_size = 16,
-	-- font = wt.font("Source Code Pro"),
-	-- font = wt.font({family = "Fira Mono"}),
-	-- font = wt.font("Ubuntu Mono Ligaturized"),
-	-- font = wt.font("Consolas ligaturized v2"),
-	-- font = wt.font("Cascadia Code"),
-	-- font = wt.font("Consolas ligaturized v2"),
-	-- font = wt.font("Liberation Mono"),
-	-- font = wt.font("Hasklig"),
+	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 	-- color_scheme = "Gruvbox Dark",
 	-- color_scheme = "vimbones",
 	-- color_scheme = "Gruber (base16)",
 	-- color_scheme = "Unsifted Wheat (terminal.sexy)",
-	color_scheme = "Solarized (light) (terminal.sexy)",
+	-- color_scheme = "Solarized (light) (terminal.sexy)",
 	-- color_scheme = "rose-pine",
 	-- window_background_opacity = 0.9,
 	window_padding = {
@@ -25,6 +73,22 @@ return {
 		top = 1,
 		bottom = 1,
 	},
+
+	-- font_rules = {
+	-- 	{
+	-- 		intensity = "Normal",
+	-- 		italic = true,
+	-- 		font = wt.font {family = font_data.family, weight = "Regular", style = "Italic"},
+	-- 	},
+	-- 	{
+	-- 		intensity = "Normal",
+	-- 		font = wt.font {family = font_data.family, weight = "Regular"},
+	-- 	},
+	-- 	{
+	-- 		intensity = "Bold",
+	-- 		font = wt.font {family = font_data.family, weight = "Bold"},
+	-- 	},
+	-- },
 
 	default_prog = {"powershell.exe", "-NoLogo"},
 
