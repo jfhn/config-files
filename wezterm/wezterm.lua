@@ -2,15 +2,19 @@ local wt = require("wezterm");
 
 local fonts = {
 	{family = "Iosevka Fixed", size = 16},
-	{family = "Rec Mono Casual", size = 15},
+	{family = "Rec Mono Casual", size = 14},
 	{family = "Consolas", size = 15},
-	{family = "JetBrains Mono", size = 15},
+	{family = "JetBrains Mono", size = 14},
+	{family = "Source Code Pro", size = 15},
+	{family = "Cascadia Mono", size = 14},
 }
 
 local themes = {
 	"Gruber (base16)",
 	"rose-pine",
 	"Solarized (light) (terminal.sexy)",
+	"Material (base16)",
+	"Ayu Mirage",
 }
 
 wt.on("augment-command-palette", function(_, _)
@@ -60,6 +64,9 @@ end)
 return {
 	-- Appearance
 	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+	color_scheme = "Ayu Mirage",
+	font = wt.font("Iosevka Fixed"),
+	font_size = 16,
 	-- color_scheme = "Gruvbox Dark",
 	-- color_scheme = "vimbones",
 	-- color_scheme = "Gruber (base16)",
