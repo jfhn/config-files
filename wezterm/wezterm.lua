@@ -7,6 +7,9 @@ local fonts = {
 	{family = "JetBrains Mono", size = 14},
 	{family = "Source Code Pro", size = 15},
 	{family = "Cascadia Mono", size = 14},
+	{family = "DejaVu Sans Mono", size = 14},
+	{family = "Inconsolata", size = 16},
+	{family = "Fira Mono", size = 14},
 }
 
 local themes = {
@@ -20,12 +23,12 @@ local themes = {
 wt.on("augment-command-palette", function(_, _)
 	local font_choices = {}
 	for index, data in ipairs(fonts) do
-		font_choices[#font_choices+1] = { label = data.family, id = tostring(index) }
+		font_choices[#font_choices + 1] = { label = data.family, id = tostring(index) }
 	end
 
 	local theme_choices = {}
 	for index, theme in ipairs(themes) do
-		theme_choices[#theme_choices+1] = { label = theme, id = tostring(index) }
+		theme_choices[#theme_choices + 1] = { label = theme, id = tostring(index) }
 	end
 
 	return {
@@ -65,8 +68,8 @@ return {
 	-- Appearance
 	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 	color_scheme = "Ayu Mirage",
-	font = wt.font("Iosevka Fixed"),
-	font_size = 16,
+	font = wt.font(fonts[9].family),
+	font_size = fonts[9].size,
 	-- color_scheme = "Gruvbox Dark",
 	-- color_scheme = "vimbones",
 	-- color_scheme = "Gruber (base16)",
@@ -80,6 +83,7 @@ return {
 		top = 1,
 		bottom = 1,
 	},
+	adjust_window_size_when_changing_font_size = false,
 
 	-- font_rules = {
 	-- 	{
