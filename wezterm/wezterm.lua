@@ -8,7 +8,7 @@ local fonts = {
 	{family = "Source Code Pro", size = 15},
 	{family = "Cascadia Mono", size = 14},
 	{family = "DejaVu Sans Mono", size = 14},
-	{family = "Inconsolata", size = 16},
+	{family = "Ubuntu Mono", size = 16},
 	{family = "Fira Mono", size = 14},
 }
 
@@ -17,7 +17,8 @@ local themes = {
 	"rose-pine",
 	"Solarized (light) (terminal.sexy)",
 	"Material (base16)",
-	"Ayu Mirage",
+	"Galaxy",
+	"Gruvbox Dark (Gogh)",
 }
 
 wt.on("augment-command-palette", function(_, _)
@@ -46,7 +47,17 @@ wt.on("augment-command-palette", function(_, _)
 				end)
 			}
 		},
-
+		{
+			brief = "Select Font by Name",
+			action = wt.action.PromptInputLine {
+				description = "Enter font name",
+				action = wt.action_callback(function(window, _, line)
+  					local overrides = window:get_config_overrides() or {}
+					overrides.font = wt.font(line)
+					window:set_config_overrides(overrides)
+				end)
+			}
+		},
 		{
 			brief = "Change Theme",
 			action = wt.action.InputSelector {
@@ -59,7 +70,7 @@ wt.on("augment-command-palette", function(_, _)
 					window:set_config_overrides(overrides)
 				end)
 			}
-		}
+		},
 	}
 end)
 
@@ -67,9 +78,9 @@ end)
 return {
 	-- Appearance
 	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
-	color_scheme = "Ayu Mirage",
-	font = wt.font(fonts[9].family),
-	font_size = fonts[9].size,
+	color_scheme = themes[4],
+	font = wt.font(fonts[1].family),
+	font_size = fonts[1].size,
 	-- color_scheme = "Gruvbox Dark",
 	-- color_scheme = "vimbones",
 	-- color_scheme = "Gruber (base16)",
@@ -123,7 +134,7 @@ return {
 			action = wt.action.SplitVertical {domain = "CurrentPaneDomain"} -- {SplitVertical = {args={"cmd"}}}
 		},
 		{
-			key = "=", mods = "CTRL|ALT",
+			key = "\\", mods = "CTRL|ALT",
 			action = wt.action.SplitHorizontal {domain = "CurrentPaneDomain"}
 			-- action = wt.action {SplitHorizontal = {args={"cmd"}}}
 		},
