@@ -1,0 +1,17 @@
+{
+  "Coqtail": { "branch": "main", "commit": "299d0acdb9b697fd951df81a5d67e3f5cb6ed4f9" },
+  "github-nvim-theme": { "branch": "main", "commit": "0e4636f556880d13c00d8a8f686fae8df7c9845f" },
+  "gruber-darker.nvim": { "branch": "main", "commit": "a2dda61d9c1225e16951a51d6b89795b0ac35cd6" },
+  "kanagawa.nvim": { "branch": "master", "commit": "18ae5771b22d8f913ef541c827a8180b4cb12c8a" },
+  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
+  "lazydev.nvim": { "branch": "main", "commit": "f59bd14a852ca43db38e3662395354cb2a9b13e0" },
+  "mini.icons": { "branch": "main", "commit": "44c0160526f7ae17ca8e8eab9ab235d047fcf7a6" },
+  "neovim": { "branch": "main", "commit": "8b1fd252255a7f2c41b4192a787ab62660b29f72" },
+  "nvim-lspconfig": { "branch": "master", "commit": "47f236c058f0511702286a21ba53bbf42abbd8a8" },
+  "oil.nvim": { "branch": "master", "commit": "dba037598843973b8c54bc5ce0318db4a0da439d" },
+  "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "vim-fugitive": { "branch": "master", "commit": "d4877e54cef67f5af4f950935b1ade19ed6b7370" },
+  "vim-glsl": { "branch": "master", "commit": "40dd0b143ef93f3930a8a409f60c1bb85e28b727" },
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
+}
