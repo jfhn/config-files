@@ -23,6 +23,7 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup {
 	"tpope/vim-fugitive",
 	"blazkowolf/gruber-darker.nvim",
+	"savq/melange-nvim",
 	"projekt0n/github-nvim-theme",
 	"whonore/Coqtail",
 	{
@@ -58,6 +59,7 @@ require("lazy").setup {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup {}
 			lspconfig.pyright.setup {}
+			lspconfig.ruff.setup {}
 		end
 	},
 	{
