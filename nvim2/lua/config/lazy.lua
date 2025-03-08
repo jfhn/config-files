@@ -63,6 +63,11 @@ require("lazy").setup {
 		end
 	},
 	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+	{
 		'stevearc/oil.nvim',
 		---@module 'oil'
 		---@type oil.SetupOpts
