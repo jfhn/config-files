@@ -112,7 +112,7 @@ return {
 	-- 	},
 	-- },
 
-	default_prog = {"powershell.exe", "-NoLogo"},
+	-- default_prog = {"powershell.exe", "-NoLogo"},
 
 	-- Keybindings
 	keys = {
@@ -172,7 +172,7 @@ return {
 	scrollback_lines = 3500,
 
 	-- Startup
-	default_cwd = "C:\\Users\\JanHi\\dev",
+	-- default_cwd = "C:\\Users\\JanHi\\dev",
 	launch_menu = {
 		{
 			label = "powershell",
