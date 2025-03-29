@@ -1,4 +1,10 @@
 local wt = require("wezterm");
+local ok, local_config = pcall(require, "local");
+if not ok then
+	local_config = function(config)
+		return config;
+	end
+end
 
 local fonts = {
 	{family = "Iosevka Fixed", size = 16},
@@ -10,6 +16,7 @@ local fonts = {
 	{family = "DejaVu Sans Mono", size = 14},
 	{family = "Ubuntu Mono", size = 16},
 	{family = "Fira Mono", size = 14},
+	{family = "Inconsolata", size = 17},
 }
 
 local themes = {
@@ -75,7 +82,7 @@ wt.on("augment-command-palette", function(_, _)
 end)
 
 -- TODO: Rework with config builder.
-return {
+config = {
 	-- Appearance
 	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 	color_scheme = themes[4],
@@ -170,18 +177,6 @@ return {
 
 	-- Other
 	scrollback_lines = 3500,
-
-	-- Startup
-	-- default_cwd = "C:\\Users\\JanHi\\dev",
-	launch_menu = {
-		{
-			label = "powershell",
-			args  = {"powershell"},
-			-- cwd   = "C:\\Users\\JanHi\\dev",
-		},
-		{
-			label = "WSL Bash",
-			args  = {"bash"}
-		}
-	},
 }
+
+return local_config(config);
