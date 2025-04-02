@@ -1,0 +1,85 @@
+;;; TODO: Convert into org mode initialization file.
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq inhibit-startup-screen t)
+
+(setq global-display-line-number-mode t)
+
+; (set-face-attribute 'default nil :font "IosevkaFixed-16")
+(set-face-attribute 'default nil :font "JetBrainsMono-14")
+
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+			 ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(setq package-install-upgrade-built-in t)
+
+;; TODO: Fix magit, it requires `seq` >= 2.24
+(dolist (pkg '(
+	       seq
+	       evil
+	       evil-collection
+	       ido
+	       magit
+	       undo-tree
+	       ;; Themes
+	       gruber-darker-theme
+	       hc-zenburn-theme
+	       zenburn-theme))
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
+
+;; Evil
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
+(setq evil-want-C-u-scroll t)
+(setq evil-undo-system 'undo-tree)
+(evil-mode 1)
+(evil-collection-init)
+
+;; Ido
+(ido-mode 1)
+(setq ido-enable-flex-matching t
+      ido-everywhere t)
+
+;; Other behavior
+(load-theme 'gruber-darker t)
+(setq scroll-margin 5)
+(setq scroll-conservatively 101)
+
+;; Custom key bindings
+(global-unset-key (kbd "C-x C-f"))
+(global-unset-key (kbd "C-x b"))
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-0") '(lambda () (interactive) (text-scale-set 0)))
+
+(evil-ex-define-cmd "e" 'find-file)
+(evil-ex-define-cmd "b" 'ido-switch-buffer)
+
+;; Leader key bindings
+(evil-set-leader 'normal (kbd "SPC"))
+(evil-define-key '(normal motion) 'global (kbd "<leader>ff") 'find-file)
+(evil-define-key '(normal motion) 'global (kbd "<leader>b") 'ido-switch-buffer)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("91692ced59034a31ab8a4b83063e6e0e7605c4d76053ab3208e382ab3b5e680a" "01a9797244146bbae39b18ef37e6f2ca5bebded90d9fe3a2f342a9e863aaa4fd" default))
+ '(package-selected-packages
+   '(zenburn-theme hc-zenburn-theme gruber-darker-theme seq evil-collection magit evil)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
