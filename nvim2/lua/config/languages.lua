@@ -15,3 +15,13 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPre", "BufRead"}, {
 		vim.o.expandtab = true
 	end
 })
+
+vim.api.nvim_create_autocmd({"BufNewFile", "BufReadPre", "BufRead"}, {
+	pattern = {"*.ts", "*.tsx", "*.js", "*.jsx", "*.html"},
+	callback = function()
+		vim.o.expandtab = true
+		vim.o.shiftwidth = 2;
+		vim.o.tabstop = 2;
+		vim.o.softtabstop = 2;
+	end
+})
