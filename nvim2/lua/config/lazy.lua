@@ -27,6 +27,17 @@ require("lazy").setup {
 	"projekt0n/github-nvim-theme",
 	"whonore/Coqtail",
 	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",         -- required
+			"sindrets/diffview.nvim",        -- optional - Diff integration
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+			"ibhagwan/fzf-lua",              -- optional
+			"echasnovski/mini.pick",         -- optional
+		},
+	},
+	{
 		"tikhomirov/vim-glsl",
 		config = function()
 			vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
