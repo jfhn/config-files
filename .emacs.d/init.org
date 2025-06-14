@@ -1,0 +1,98 @@
+#+TITLE: Personal Emacs Config
+#+PROPERTY: header-args :tangle init.el
+
+* Package management
+** Setup package system
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+  			 ("elpa" . "https://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (setq package-install-upgrade-built-in t)
+#+END_SRC
+
+** Install packages
+# TODO: Split into meaningful lists
+#+BEGIN_SRC emacs-lisp
+  (dolist (pkg '(
+  	       seq
+  	       evil
+  	       evil-collection
+  	       ido
+  	       magit
+  	       undo-tree
+  	       ;; Themes
+  	       gruber-darker-theme
+  	       hc-zenburn-theme
+  	       zenburn-theme))
+    (unless (package-installed-p pkg)
+      (package-install pkg)))
+#+END_SRC
+
+* UI configuration
+** Disable unnecessary UI elements
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+
+** Remove startup screen
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-screen t)
+#+END_SRC
+
+** Enable relative line numbers
+#+BEGIN_SRC emacs-lisp
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode t)
+#+END_SRC
+
+** Set font and theme
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil :font "IosevkaFixed-16")
+  (load-theme 'gruber-darker t)
+#+END_SRC
+
+** Scroll behavior
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-margin 5)
+  (setq scroll-conservatively 101)
+#+END_SRC
+
+* Behavior configuration
+** Ido mode configuration
+#+BEGIN_SRC emacs-lisp
+  (ido-mode 1)
+  (setq ido-enable-flex-matching t
+        ido-everywhere t)
+#+END_SRC
+
+** Evil mode configuration
+*** Base configuration
+#+BEGIN_SRC emacs-lisp
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-undo-system 'undo-tree)
+  (evil-mode 1)
+  (evil-collection-init)
+  (evil-set-leader 'normal (kbd "SPC"))
+#+END_SRC
+
+*** Additional Keybindings
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-=") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
+  (global-set-key (kbd "C-0") '(lambda () (interactive) (text-scale-set 0)))
+
+  (evil-ex-define-cmd "e" 'find-file)
+  (evil-ex-define-cmd "b" 'ido-switch-buffer)
+
+  (evil-define-key '(normal motion) 'global (kbd "<leader>ff") 'find-file)
+  (evil-define-key '(normal motion) 'global (kbd "<leader>b") 'ido-switch-buffer)
+#+END_SRC
