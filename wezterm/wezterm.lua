@@ -22,7 +22,8 @@ local defaults = {
 
 	themes = {
 		"Gruber (base16)",
-		"rose-pine",
+		"Rosé Pine (Gogh)",
+		"Rosé Pine Dawn (Gogh)",
 		"Solarized (light) (terminal.sexy)",
 		"Material (base16)",
 	}
