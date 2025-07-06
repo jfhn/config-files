@@ -1,3 +1,14 @@
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.open_float);
-vim.keymap.set('n', '<leader>df', vim.diagnostic.setloclist);
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>df', vim.diagnostic.setloclist)
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references)
+
+local todo_comments = require('todo-comments')
+vim.keymap.set('n', '<leader>tt', function()
+	vim.cmd('TodoTelescope')
+end, { desc = 'Show TODO comments in Telescope' })
+vim.keymap.set('n', '[t', function()
+	todo_comments.jump_next()
+end, { desc = 'Jump to next TODO comments' })
+vim.keymap.set('n', ']t', function()
+	todo_comments.jump_prev()
+end, { desc = 'Jump to prev TODO comments' })
