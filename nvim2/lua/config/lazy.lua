@@ -51,6 +51,7 @@ require("lazy").setup {
 	"tpope/vim-surround",
 	"rose-pine/neovim",
 	"rebelot/kanagawa.nvim",
+	"lewis6991/gitsigns.nvim",
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.8",
 		dependencies = {"nvim-lua/plenary.nvim"},
