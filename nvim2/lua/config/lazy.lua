@@ -25,6 +25,8 @@ require("lazy").setup {
 	"blazkowolf/gruber-darker.nvim",
 	"savq/melange-nvim",
 	"projekt0n/github-nvim-theme",
+	"d11wtq/subatomic256.vim",
+	"MeanderingProgrammer/render-markdown.nvim",
 	"whonore/Coqtail",
 	{
 		"NeogitOrg/neogit",
