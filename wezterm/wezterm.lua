@@ -68,6 +68,7 @@ add_font(defaults.fonts, { family = "JetBrains Mono", size = 14, bold = "Black",
 add_font(defaults.fonts, { family = "DejaVu Sans Mono", size = 14 })
 add_font(defaults.fonts, { family = "Ubuntu Mono", size = 16 })
 add_font(defaults.fonts, { family = "Fira Mono", size = 14, bold = "Black", bold_italic = "Black" })
+add_font(defaults.fonts, { family = "Source Code Pro", size = 14, bold = "Bold", bold_italic = "Bold" })
 -- add_font(defaults.fonts, { family = "Fira Mono", size = 14, bold = "Bold", bold_italic = "Bold" })
 
 local default_config = {
