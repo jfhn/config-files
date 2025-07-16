@@ -10,15 +10,47 @@ if not ok then
 	end
 end
 
+---@alias FontIntensity "Half"|"Normal"|"Bold"
+---@alias FontWeight "Thin"|"Light"|"Medium"|"Bold"|"Black"
+---@alias FontData { family: string, size: integer, weigth: FontWeight|nil, bold: FontWeight|nil, bold_italic: FontWeight|nil }
+---@alias FontRule { family: string, intensity: FontIntensity, font: table }
+---@alias WeztermFont { family: string, size: integer, rules: FontRule[] }
+
+---@param fonts WeztermFont[]
+---@param font_data FontData
+function add_font(fonts, font_data)
+	local rules = {};
+	if font_data.weigth then
+		table.insert(rules, {
+			family = font_data.family,
+			intensity = "Normal",
+			font = wt.font { family = font_data.family, weight = font_data.weigth }
+		})
+	end
+	if font_data.bold then
+		table.insert(rules, {
+			family = font_data.family,
+			intensity = "Bold",
+			font = wt.font { family = font_data.family, weight = font_data.bold }
+		})
+	end
+	if font_data.bold_italic then
+		table.insert(rules, {
+			family = font_data.family,
+			intensity = "Bold",
+			italic = true,
+			font = wt.font { family = font_data.family, weight = font_data.bold }
+		})
+	end
+	table.insert(fonts, {
+		family = font_data.family,
+		size = font_data.size,
+		rules = rules,
+	})
+end
+
 local defaults = {
-	fonts = {
-		{family = "Iosevka Fixed", size = 16},
-		{family = "Rec Mono Casual", size = 14},
-		{family = "JetBrains Mono", size = 14},
-		{family = "DejaVu Sans Mono", size = 14},
-		{family = "Ubuntu Mono", size = 16},
-		{family = "Fira Mono", size = 14},
-	},
+	fonts = {},
 
 	themes = {
 		"Gruber (base16)",
@@ -29,12 +61,22 @@ local defaults = {
 	}
 }
 
+add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16, bold = "Black", bold_italic = "Black" })
+-- add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16, bold = "Bold", bold_italic = "Bold" })
+add_font(defaults.fonts, { family = "Rec Mono Casual", size = 14 })
+add_font(defaults.fonts, { family = "JetBrains Mono", size = 14, bold = "Black", bold_italic = "Black" })
+add_font(defaults.fonts, { family = "DejaVu Sans Mono", size = 14 })
+add_font(defaults.fonts, { family = "Ubuntu Mono", size = 16 })
+add_font(defaults.fonts, { family = "Fira Mono", size = 14, bold = "Black", bold_italic = "Black" })
+-- add_font(defaults.fonts, { family = "Fira Mono", size = 14, bold = "Bold", bold_italic = "Bold" })
+
 local default_config = {
 	-- Appearance
 	harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
 	color_scheme = defaults.themes[1],
 	font = wt.font(defaults.fonts[1].family),
 	font_size = defaults.fonts[1].size,
+	font_rules = defaults.fonts[1].rules,
 	window_padding = {left = 1, right = 1, top = 1, bottom = 1},
 	adjust_window_size_when_changing_font_size = false,
 
@@ -42,15 +84,15 @@ local default_config = {
 	-- 	{
 	-- 		intensity = "Normal",
 	-- 		italic = true,
-	-- 		font = wt.font {family = font_data.family, weight = "Regular", style = "Italic"},
+	-- 		font = wt.font {family = "Iosevka Fixed", weight = "Regular", style = "Italic"},
 	-- 	},
 	-- 	{
 	-- 		intensity = "Normal",
-	-- 		font = wt.font {family = font_data.family, weight = "Regular"},
+	-- 		font = wt.font {family = "Iosevka Fixed", weight = "Regular"},
 	-- 	},
 	-- 	{
 	-- 		intensity = "Bold",
-	-- 		font = wt.font {family = font_data.family, weight = "Bold"},
+	-- 		font = wt.font {family = "Iosevka Fixed", weight = "Bold"},
 	-- 	},
 	-- },
 
@@ -136,6 +178,7 @@ wt.on("augment-command-palette", function()
 					local data = custom.fonts[index]
 					overrides.font = wt.font(data.family)
 					overrides.font_size = data.size
+					overrides.font_rules = data.rules
 					window:set_config_overrides(overrides)
 				end)
 			}
