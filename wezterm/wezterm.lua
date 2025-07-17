@@ -22,21 +22,18 @@ function add_font(fonts, font_data)
 	local rules = {};
 	if font_data.weigth then
 		table.insert(rules, {
-			family = font_data.family,
 			intensity = "Normal",
 			font = wt.font { family = font_data.family, weight = font_data.weigth }
 		})
 	end
 	if font_data.bold then
 		table.insert(rules, {
-			family = font_data.family,
 			intensity = "Bold",
 			font = wt.font { family = font_data.family, weight = font_data.bold }
 		})
 	end
 	if font_data.bold_italic then
 		table.insert(rules, {
-			family = font_data.family,
 			intensity = "Bold",
 			italic = true,
 			font = wt.font { family = font_data.family, weight = font_data.bold }
