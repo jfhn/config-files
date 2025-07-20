@@ -58,7 +58,8 @@ local defaults = {
 	}
 }
 
-add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16, bold = "Black", bold_italic = "Black" })
+add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16 })
+-- add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16, bold = "Black", bold_italic = "Black" })
 -- add_font(defaults.fonts, { family = "Iosevka Fixed", size = 16, bold = "Bold", bold_italic = "Bold" })
 add_font(defaults.fonts, { family = "Rec Mono Casual", size = 14 })
 add_font(defaults.fonts, { family = "JetBrains Mono", size = 14, bold = "Black", bold_italic = "Black" })
