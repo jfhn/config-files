@@ -26,6 +26,9 @@ require("lazy").setup {
 	"savq/melange-nvim",
 	"projekt0n/github-nvim-theme",
 	"d11wtq/subatomic256.vim",
+	"andreasvc/vim-256noir",
+	"owickstrom/vim-colors-paramount",
+	"axvr/photon.vim",
 	"MeanderingProgrammer/render-markdown.nvim",
 	"whonore/Coqtail",
 	{
