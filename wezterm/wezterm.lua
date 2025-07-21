@@ -55,6 +55,7 @@ local defaults = {
 		"Rosé Pine Dawn (Gogh)",
 		"Solarized (light) (terminal.sexy)",
 		"Material (base16)",
+		"Predawn (Gogh)",
 	}
 }
 
