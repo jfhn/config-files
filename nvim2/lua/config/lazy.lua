@@ -29,6 +29,7 @@ require("lazy").setup {
 	"andreasvc/vim-256noir",
 	"owickstrom/vim-colors-paramount",
 	"axvr/photon.vim",
+	"ellisonleao/gruvbox.nvim",
 	"MeanderingProgrammer/render-markdown.nvim",
 	"whonore/Coqtail",
 	{
