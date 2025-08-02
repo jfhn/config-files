@@ -29,7 +29,7 @@ require("lazy").setup {
 	"andreasvc/vim-256noir",
 	"owickstrom/vim-colors-paramount",
 	"axvr/photon.vim",
-	"ellisonleao/gruvbox.nvim",
+	"marko-cerovac/material.nvim",
 	"MeanderingProgrammer/render-markdown.nvim",
 	"whonore/Coqtail",
 	{
@@ -87,6 +87,7 @@ require("lazy").setup {
 			lspconfig.lua_ls.setup {}
 			lspconfig.pyright.setup {}
 			lspconfig.ruff.setup {}
+			lspconfig.hls.setup {}
 			lspconfig.tinymist.setup {
 				settings = {
 					formatterMode = "typstyle",
