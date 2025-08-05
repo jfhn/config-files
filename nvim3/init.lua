@@ -19,8 +19,35 @@ vim.pack.add {
   'https://github.com/blazkowolf/gruber-darker.nvim',
 }
 
-require('mini.pick').setup {}
-require('oil').setup {}
+require('mini.icons').setup {}
+require('mini.pick').setup {
+  mappings = { choose_marked = '<C-q>' }
+}
+require('oil').setup {
+  default_file_explorer = true,
+
+  win_options = {
+    signcolumn = 'no',
+    cursorcolumn = false,
+    spell = false,
+  },
+
+  delete_to_trash = true,
+  skip_confirm_for_simple_edits = false,
+  prompt_save_on_select_new_entry = true,
+
+  lsp_file_methods = {
+    enabled = false,
+    autosave_changes = false,
+  },
+
+  watch_for_changes = true,
+  use_default_keymaps = true,
+
+  view_options = {
+    show_hidden = true
+  },
+}
 require('neogit').setup { kind = 'split_above' }
 local wilder = require('wilder')
 wilder.setup { modes = { ':', '/', '?' } }
@@ -35,6 +62,7 @@ local map = vim.keymap.set
 map('n', '<leader>=', vim.lsp.buf.format)
 map('n', '<leader>ff', ':Pick files<CR>')
 map('n', '<leader>fg', ':Pick grep_live<CR>')
+map('n', '<leader>b', ':Pick buffers<CR>')
 map('n', '<leader>h', ':Pick help<CR>')
 map('n', '<leader>gg', ':Neogit<CR>')
 
