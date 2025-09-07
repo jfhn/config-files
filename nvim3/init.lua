@@ -9,14 +9,18 @@ vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/tpope/vim-surround.git',
   'https://github.com/gelguy/wilder.nvim',
+  'https://github.com/chomosuke/typst-preview.nvim',
 
   -- Git
   'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/sindrets/diffview.nvim',
   'https://github.com/NeogitOrg/neogit.git',
 
   -- Themes
   'https://github.com/blazkowolf/gruber-darker.nvim',
+  'https://github.com/projekt0n/github-nvim-theme',
+  'https://github.com/savq/melange-nvim',
+  'https://github.com/rose-pine/neovim.git',
+  'https://github.com/shaunsingh/nord.nvim',
 }
 
 require('mini.icons').setup {}
@@ -54,8 +58,13 @@ wilder.setup { modes = { ':', '/', '?' } }
 wilder.set_option('renderer', wilder.wildmenu_renderer {
   highlighter = wilder.basic_highlighter(),
 })
+require('typst-preview').setup {
+  dependencies_bin = {
+    ['tinymist'] = '/home/jan/.local/bin/tinymist'
+  }
+}
 
-vim.lsp.enable { 'lua_ls', 'pyright' }
+vim.lsp.enable { 'lua_ls', 'pyright', 'tinymist', 'ts_ls' }
 
 vim.g.mapleader = ' '
 local map = vim.keymap.set
@@ -65,6 +74,7 @@ map('n', '<leader>fg', ':Pick grep_live<CR>')
 map('n', '<leader>b', ':Pick buffers<CR>')
 map('n', '<leader>h', ':Pick help<CR>')
 map('n', '<leader>gg', ':Neogit<CR>')
+map('n', '<leader>e', ':Oil .<CR>')
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.lua', '*.js', '*.ts', '*.ml' },
