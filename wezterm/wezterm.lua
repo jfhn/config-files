@@ -79,6 +79,8 @@ local default_config = {
 	font_rules = defaults.fonts[1].rules,
 	window_padding = {left = 1, right = 1, top = 1, bottom = 1},
 	adjust_window_size_when_changing_font_size = false,
+	use_fancy_tab_bar = false,
+	hide_tab_bar_if_only_one_tab = true,
 
 	-- font_rules = {
 	-- 	{
@@ -207,6 +209,22 @@ wt.on("augment-command-palette", function()
 				end)
 			}
 		},
+		{
+			brief = "Ligatures",
+			action = wt.action.InputSelector {
+				choices = {{label = "Enable", id = "enable"}, {label = "Disable", id = "disable"}},
+				action = wt.action_callback(function(window, _, id)
+					local overrides = window:get_config_overrides() or {}
+					if id == "enable" then
+						overrides.harfbuzz_features = {'calt=1', 'clig=1', 'liga=1'};
+						window:set_config_overrides(overrides)
+					elseif id == "disable" then
+						overrides.harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'};
+						window:set_config_overrides(overrides)
+					end
+				end)
+			}
+		}
 	}
 end)
 
