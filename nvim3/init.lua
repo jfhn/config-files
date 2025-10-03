@@ -64,7 +64,7 @@ require('typst-preview').setup {
   }
 }
 
-vim.lsp.enable { 'lua_ls', 'pyright', 'tinymist', 'ts_ls' }
+vim.lsp.enable { 'lua_ls', 'pyright', 'tinymist', 'ts_ls', 'ols' }
 
 vim.g.mapleader = ' '
 local map = vim.keymap.set
@@ -77,7 +77,7 @@ map('n', '<leader>gg', ':Neogit<CR>')
 map('n', '<leader>e', ':Oil .<CR>')
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-  pattern = { '*.lua', '*.js', '*.ts', '*.ml' },
+  pattern = { '*.js', '*.ts', '*.ml' },
   callback = function()
     vim.cmd('set ts=2 sts=2 sw=2 et')
   end
