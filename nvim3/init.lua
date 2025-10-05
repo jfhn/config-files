@@ -3,8 +3,8 @@ vim.o.winborder = 'none'  -- Any other setting conflicts with wilder menu :(
 
 vim.pack.add {
   -- Base
-  'https://github.com/echasnovski/mini.icons',
-  'https://github.com/echasnovski/mini.pick',
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/stevearc/oil.nvim',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/tpope/vim-surround.git',
@@ -12,7 +12,6 @@ vim.pack.add {
   'https://github.com/chomosuke/typst-preview.nvim',
 
   -- Git
-  'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/NeogitOrg/neogit.git',
 
   -- Themes
@@ -23,10 +22,6 @@ vim.pack.add {
   'https://github.com/shaunsingh/nord.nvim',
 }
 
-require('mini.icons').setup {}
-require('mini.pick').setup {
-  mappings = { choose_marked = '<C-q>' }
-}
 require('oil').setup {
   default_file_explorer = true,
 
@@ -69,10 +64,11 @@ vim.lsp.enable { 'lua_ls', 'pyright', 'tinymist', 'ts_ls', 'ols' }
 vim.g.mapleader = ' '
 local map = vim.keymap.set
 map('n', '<leader>=', vim.lsp.buf.format)
-map('n', '<leader>ff', ':Pick files<CR>')
-map('n', '<leader>fg', ':Pick grep_live<CR>')
-map('n', '<leader>b', ':Pick buffers<CR>')
-map('n', '<leader>h', ':Pick help<CR>')
+map('n', '<leader>ff', ':lua require("telescope.builtin").find_files({hidden = true})<CR>')
+map('n', '<leader>fg', ':Telescope live_grep<CR>')
+map('n', '<leader>fs', ':Telescope grep_string<CR>')
+map('n', '<leader>b', ':Telescope buffers<CR>')
+map('n', '<leader>h', ':Telescope help_tags<CR>')
 map('n', '<leader>gg', ':Neogit<CR>')
 map('n', '<leader>e', ':Oil .<CR>')
 
@@ -108,4 +104,3 @@ vim.api.nvim_create_user_command('Make', Make, {
 })
 
 dofile(vim.fn.stdpath('config') .. '/local.lua')
-vim.cmd('hi link MiniPickNormal Normal')  -- Fix invisible selection.
