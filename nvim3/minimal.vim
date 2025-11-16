@@ -38,5 +38,3 @@ let g:netrw_liststyle=3                 " tree view
 " minimal extended keymap
 nnoremap <C-h> :bprev<Cr>               " switch to previous buffer
 nnoremap <C-l> :bnext<Cr>               " switch to next buffer
-vnoremap > >gv                          " keep visual selection on right indent
-vnoremap < <gv                          " keep visual selection on left indent
