@@ -47,7 +47,7 @@ require('oil').setup {
     show_hidden = true
   },
 }
-require('neogit').setup { kind = 'split_above' }
+require('neogit').setup {}
 local wilder = require('wilder')
 wilder.setup { modes = { ':', '/', '?' } }
 wilder.set_option('renderer', wilder.wildmenu_renderer {
