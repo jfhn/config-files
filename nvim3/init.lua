@@ -1,4 +1,3 @@
-vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
 vim.o.winborder = 'none'  -- Any other setting conflicts with wilder menu :(
 
 vim.pack.add {
@@ -10,6 +9,7 @@ vim.pack.add {
   'https://github.com/tpope/vim-surround.git',
   'https://github.com/gelguy/wilder.nvim',
   'https://github.com/chomosuke/typst-preview.nvim',
+  'https://github.com/vimpostor/vim-tpipeline',
 
   -- Git
   'https://github.com/NeogitOrg/neogit.git',
@@ -103,4 +103,5 @@ vim.api.nvim_create_user_command('Make', Make, {
   desc = 'Updates make program if specified and executes it',
 })
 
+vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
 dofile(vim.fn.stdpath('config') .. '/local.lua')
