@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    "spacing": 0,
+    "height": 0,
+    "position": "top",
+
+    "margin-top": 0,
+    "margin-right": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "tray",
+        "cpu_text",
+        "cpu",
+        "memory",
+        "battery",
+        "temperature",
+        "network",
+        "pulseaudio"
+    ],
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "tooltip": false
+    },
+
+    "tray": {
+        "spacing": 10,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%H:%M - %a, %d.%m.%Y}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "mem {percentage}%",
+        "interval": 2,
+
+        "states": {
+            "critical": 80
+        }
+    },
+
+    "temperature": {
+        // "thermal-zone": 0,
+        // "hwmon-path": "/sys/devices/virtual/thermal/thermal_zone0/hwmon0/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": " Coffee: {temperatureC}°C ",
+        "format": " Coffee: {temperatureC}°C "
+    },
+
+    "battery": {
+        "format": "bat {capacity}%",
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        }
+    },
+
+    "network": {
+        "format-wifi" : "wifi {bandwidthDownBits} - {signalStrength}%",
+        "format-ethernet": "enth {bandwidthDownBits} - {signalStrength}%",
+        "format-disconnected" : "no network",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "scroll-step": 5,
+        "max-volume": 100,
+        "format": "vol {volume}%",
+        "format-bluetooth": "vol {volume}%",
+        "nospacing": 1,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    }
+}
+
+//     "pulseaudio/slider": {
+//         "min": 0,
+//         "max": 100,
+//         "orientation": "horizontal"
+//     }
