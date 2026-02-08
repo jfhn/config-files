@@ -1,0 +1,30 @@
+## Ghostty theme: Sphere
+## Source: https://github.com/vimichael/my-nvim-config/blob/main/colors/custom.vim
+## Reference: https://ghostty.org/docs/features/theme
+
+background = #202020
+foreground = #FEFEFE
+
+cursor-color = #FFFEDB
+cursor-text = #202020
+
+selection-background = #454545
+selection-foreground = #FEFEFE
+
+palette = 0=#202020
+palette = 1=#C34143
+palette = 2=#A2A970
+palette = 3=#DEBF7C
+palette = 4=#AA9AAC
+palette = 5=#AA9AAC
+palette = 6=#8B9698
+palette = 7=#FEFEFE
+palette = 8=#474A4D
+palette = 9=#C34143
+palette = 10=#C1C88D
+palette = 11=#E3D896
+palette = 12=#AA9AAC
+palette = 13=#AA9AAC
+palette = 14=#8B9698
+palette = 15=#FFFEDB
+
