@@ -4,7 +4,7 @@ vim.pack.add {
   -- Base
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
-  'https://github.com/stevearc/oil.nvim',
+  { src = 'https://github.com/jfhn/oil.nvim', branch = 'user-group-columns' },
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/tpope/vim-surround.git',
   'https://github.com/gelguy/wilder.nvim',
@@ -24,6 +24,15 @@ vim.pack.add {
 
 require('oil').setup {
   default_file_explorer = true,
+
+  columns = {
+    "icon",
+    "permissions",
+    "user",
+    "group",
+    "size",
+    "mtime",
+  },
 
   win_options = {
     signcolumn = 'no',
