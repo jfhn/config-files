@@ -114,3 +114,4 @@ vim.api.nvim_create_user_command('Make', Make, {
 
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
 dofile(vim.fn.stdpath('config') .. '/local.lua')
+dofile(vim.fn.stdpath('config') .. '/trailing-whitespace.lua').toggle_trim_on_save()
