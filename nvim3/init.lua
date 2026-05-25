@@ -31,6 +31,7 @@ vim.pack.add {
   'https://github.com/maxmx03/solarized.nvim',
   'https://github.com/ellisonleao/gruvbox.nvim',
   'https://github.com/ydkulks/cursor-dark.nvim',
+  'https://github.com/vpoltora/cursor-light.nvim',
 
   -- AI
   'https://github.com/nickjvandyke/opencode.nvim',
