@@ -196,9 +196,12 @@ vim.keymap.set('x', '<C-l>', function()
   require("opencode").ask("@this: ")
 end, { desc = "Add selection to OpenCode prompt" })
 
+vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
 vim.defer_fn(function()
-  vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
   dofile(vim.fn.stdpath('config') .. '/local.lua')
   require('neogit').setup {}
   pcall(dofile, vim.fn.stdpath('config') .. '/trailing-whitespace.lua')
+  -- For some reason, some settings are overwritten from minimal.vim and we
+  -- need to set them again manually.
+  vim.o.ruler = true
 end, 0)
