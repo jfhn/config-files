@@ -196,6 +196,15 @@ vim.keymap.set('x', '<C-l>', function()
   require("opencode").ask("@this: ")
 end, { desc = "Add selection to OpenCode prompt" })
 
+require('cursor-light').setup {
+  ui = false,
+  integrations = {
+    lspsaga = false,
+    nvim_tree = true,
+    barbar = false,
+  }
+}
+
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/minimal.vim')
 vim.defer_fn(function()
   dofile(vim.fn.stdpath('config') .. '/local.lua')
@@ -205,3 +214,8 @@ vim.defer_fn(function()
   -- need to set them again manually.
   vim.o.ruler = true
 end, 0)
+
+-- Optional status column, put into local.lua
+-- vim.o.statuscolumn = "%s %l %#LineNrSeparator#│ %*"
+-- vim.api.nvim_set_hl(0, "LineNrSeparator", { fg = "#E0E0E0" })
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#999999" })
