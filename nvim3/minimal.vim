@@ -21,6 +21,7 @@ set undofile                            " use undo files
 set ff=unix ffs=unix                    " always use '\n' and never '\r\n'
 set encoding=utf-8 fileencoding=utf-8   " use UTF-8 encoding
 set foldmethod=marker                   " use markers `{{{ ... }}}` for folding
+set termguicolors                       " enable colors
 if executable("rg")                     " uses ripgrep to find files with :grep <regex> <dir=.>
 	set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
 	set grepformat=%f:%l:%c:%m
